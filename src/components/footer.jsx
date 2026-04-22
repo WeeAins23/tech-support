@@ -30,7 +30,7 @@ const Footer = () => {
           </ul>
         </nav>
 
-        {/* Social Media Icons */}
+        {/* Social Media Icons123 */}
         <div 
           style={{ marginTop: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}
           className="space-x-10">
