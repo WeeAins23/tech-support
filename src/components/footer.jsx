@@ -11,7 +11,7 @@ const Footer = () => {
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center gap-8">
         
-        {/* Logo Section*/}
+        {/* Logo Section */}
         <div className="w-full flex justify-center">
           <img 
             src="/img/ts-logo.png" 
@@ -20,7 +20,7 @@ const Footer = () => {
           />
         </div>
 
-        {/* Footer Links] */}
+        {/* Footer Links */}
         <nav className="w-full">
           <ul className="list-none p-0 m-0 flex flex-col items-center space-y-4">
             <li><Link to="/faqs" style={{ color: 'black' }} className="text-2xl font-bold">FAQs</Link></li>
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* 4. Copyright Section - Added massive bottom padding for mobile safety */}
+      {/* Copyright Section*/}
       <div 
         style={{ 
           marginTop: '40px', 
