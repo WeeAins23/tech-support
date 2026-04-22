@@ -1,0 +1,75 @@
+@media screen and (max-width: 400px) {
+  #about,
+  #services,
+  #testimonials,
+  #team,
+  #contact,
+  #footer {
+    width: 100%;
+  }
+}
+
+/* MOBILE VIEW*/
+@media (max-width: 768px) {
+    .navbar-brand {
+        display: block;
+        float: none;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .navbar-right {
+        display: flex;
+        flex-direction: column; /* Stack Login and Register buttons */
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        padding: 20px 0;
+    }
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh !important;
+  display: block;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: auto !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto !important; 
+  min-height: 100% !important;
+  overflow-y: auto !important;
+  
+}
+
+#menu.navbar-default {
+    position: absolute; 
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    min-height: 250px; 
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure the logo doesn't get squished */
+.navbar-brand img {
+    height: 300px !important;
+    width: auto;
+    max-width: none; 
+}
+
+/* Move the navigation links to align with the center of the big logo */
+.navbar-default .navbar-nav {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    height: 300px; 
+}
+
