@@ -4,6 +4,8 @@ import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Login } from "./components/login";
 import { Register } from "./components/register";
+import FAQ from "./components/faqs";
+import PrivacyPolicy from "./components/privacy";
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -34,6 +36,8 @@ const App = () => {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/faqs" element={<FAQ />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </div>
         

@@ -1,10 +1,14 @@
 @media screen and (max-width: 400px) {
   #about,
-  #services,
-  #testimonials,
-  #team,
-  #contact,
-  #footer {
+  #faqs,
+  #footer,
+  #header,
+  #login,
+  #navigation,
+  #privacy,
+  #register,
+  #sitemap,
+  #terms{
     width: 100%;
   }
 }
@@ -40,7 +44,7 @@
 
 html, body {
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   height: auto !important; 
   min-height: 100% !important;
   overflow-y: auto !important;
@@ -72,4 +76,3 @@ html, body {
     align-items: center;
     height: 300px; 
 }
-

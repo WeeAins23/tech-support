@@ -24,7 +24,17 @@ const Footer = () => {
         <nav className="w-full">
           <ul className="list-none p-0 m-0 flex flex-col items-center space-y-4">
             <li><Link to="/faqs" style={{ color: 'black' }} className="text-2xl font-bold">FAQs</Link></li>
-            <li><Link to="/sitemap" style={{ color: 'black' }} className="text-2xl font-bold">Site Map</Link></li>
+            <li>
+              <a 
+                href="/sitemap.xml" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ color: 'black' }} 
+                 className="text-2xl font-bold hover:underline"
+              >
+                Site Map
+              </a>
+            </li>
             <li><Link to="/privacy" style={{ color: 'black' }} className="text-2xl font-bold">Privacy Policy</Link></li>
             <li><Link to="/terms" style={{ color: 'black' }} className="text-2xl font-bold">Terms Of Use</Link></li>
           </ul>

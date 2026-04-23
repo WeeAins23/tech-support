@@ -14,8 +14,22 @@ export const Navigation = (props) => {
 
     {/* Login/Register buttons - will load to respective components */}
       <div className='nav-button-container'>
-        <Link to="/login" className="login-btn">Login</Link>
-        <Link to="/register" className="register-btn">Register</Link>
+        <Link 
+          to="/login" 
+          className="login-btn"
+          onMouseDown={(e) => e.target.style.color = 'white'} 
+          onMouseUp={(e) => e.target.style.color = 'black'} // This will change the text color back to black when the mouse button is released
+          >
+        Login
+        </Link>
+        <Link 
+          to="/register" 
+          className="register-btn"
+          onMouseDown={(e) => e.target.style.color = 'white'} 
+          onMouseUp={(e) => e.target.style.color = 'black'} // This will change the text color back to black when the mouse button is released
+          >
+        Register
+        </Link>
       </div>
   </div>
 </nav>
