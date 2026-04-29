@@ -3,10 +3,11 @@ import React from "react";
 const PrivacyPolicy = () => {
   return (
     <div className="w-full min-h-screen bg-white font-sans">
-      {/* Side gutters for readability (px-6 to px-12) */}
-      <div className="max-w-4xl mx-auto px-6 py-12 md:px-12 text-left">
+      <div className="container mx-auto px-10 py-12">
         
-        <h1 className="!text-black text-5xl font-extrabold mb-10 border-b-4 border-[#26d9ca] pb-4 uppercase leading-tight">
+        <h1
+        style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px' }}
+        className="!text-black text-5xl font-extrabold mb-10 border-b-4 border-[#26d9ca] pb-4 !uppercase">
           Privacy Policy
         </h1>
 

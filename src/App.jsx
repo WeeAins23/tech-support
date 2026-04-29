@@ -7,6 +7,13 @@ import { Register } from "./components/register";
 import FAQ from "./components/faqs";
 import PrivacyPolicy from "./components/privacy";
 import JsonData from "./data/data.json";
+import Terms from "./components/terms";
+import Dashboard from "./components/dashboard";
+import MousePractice from "./components/modules/mouse-practice";
+import KeyboardBasics from "./components/modules/keyboard-basics";
+import Browser from "./components/modules/browser";
+import Search from "./components/modules/search";
+import Email from "./components/modules/email"; 
 import SmoothScroll from "smooth-scroll";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -28,7 +35,7 @@ const App = () => {
         
         <Navigation />
 
-        <div className="flex-grow">
+        <div className="flex-grow mb-20">
           <Routes>
             <Route 
               path="/" 
@@ -38,6 +45,13 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/faqs" element={<FAQ />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/mouse-practice" element={<MousePractice />} />
+            <Route path="/keyboard-basics" element={<KeyboardBasics />} />
+            <Route path="/browser" element={<Browser />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/email" element={<Email />} />
           </Routes>
         </div>
         

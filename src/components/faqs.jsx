@@ -29,9 +29,11 @@ const FAQ = () => {
     ];
 
     return (
-        <div className="max-w-4xl mx-auto px-6 py-12 md:px-12">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-5xl font-black text-black mb-10 border-b-4 border-black pb-4">Frequently Asked Questions</h1>
+        <div id="faqs" className="w-full min-h-screen bg-white font-sans">
+            <div className="container mx-auto px-10 py-12">
+                <h1 
+                style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px' }}
+                className="!text-black text-5xl font-extrabold mb-10 border-b-4 border-[#26d9ca] pb-3 uppercase">Frequently Asked Questions</h1>
                 <div className="space-y-8">
                     {faqs.map((item, index) => (
                         <div key={index} className="border-2 border-black p-6 rounded-lg bg--gray-50">

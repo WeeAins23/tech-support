@@ -1,6 +1,6 @@
 *{
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   box-sizing: border-box;
 }
 
@@ -22,7 +22,7 @@ code {
 /* Ensure the body takes up the full screen and removes default spacing */
 html, body {
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   height: 100%;
 }
 

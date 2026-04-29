@@ -22,7 +22,9 @@ const Footer = () => {
 
         {/* Footer Links */}
         <nav className="w-full">
-          <ul className="list-none p-0 m-0 flex flex-col items-center space-y-4">
+          <ul className="list-none p-0 m-0 flex flex-col items-center text-center w-full"
+          style={{ padding: 0, margin: 0 }} 
+          >
             <li><Link to="/faqs" style={{ color: 'black' }} className="text-2xl font-bold">FAQs</Link></li>
             <li>
               <a 
@@ -37,6 +39,7 @@ const Footer = () => {
             </li>
             <li><Link to="/privacy" style={{ color: 'black' }} className="text-2xl font-bold">Privacy Policy</Link></li>
             <li><Link to="/terms" style={{ color: 'black' }} className="text-2xl font-bold">Terms Of Use</Link></li>
+            <li><Link to="/dashboard" style={{ color: 'black' }} className="text-2xl font-bold">Dashboard Temp Link</Link></li>
           </ul>
         </nav>
 
