@@ -48,13 +48,11 @@ html, body, .App {
   display: block;
   flex-direction: column;
   margin: 0;
-  /* padding: 0; */
   height: auto !important;
 }
 
 html, body {
   margin: 0;
-  /* padding: 0; */
   height: auto !important; 
   min-height: 100% !important;
   overflow-y: auto !important;
@@ -85,4 +83,78 @@ html, body {
     display: flex;
     align-items: center;
     height: 300px; 
+}
+
+/* --- Navigation --- */
+.custom-nav {
+  border-bottom: 0.1px solid black !important;
+  background-color: white;
+  padding: 10px 0;
+}
+
+.nav-flex-container {
+  display: flex;
+  flex-direction: column; /* Stacked on mobile */
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* --- TABLET VIEW STYLES --- */
+@media (min-width: 768px) {
+  .custom-nav {
+    height: 100px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+  }
+
+  .custom-nav .nav-flex-container {
+    display: flex !important;
+    flex-direction: row !important; /* Logo left, buttons right */
+    justify-content: space-between !important; /* Pushes logo left, buttons right */
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    margin: 0 !important;
+  }
+
+  .nav-flex-container {
+    display: flex;
+    flex-direction: row; /* Split logo left, buttons right */
+    justify-content: space-between !important; /* Pushes the logo to the left and buttons to the right */
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 40px !important;
+  }
+
+  .nav-logo{
+    height: 60px !important; /* Adjust as needed for tablet */
+    width: auto !important;
+  }
+
+  .nav-button-group {
+    display: flex !important;
+    flex-direction: column !important; /* Vertical stack on tablet */
+    gap: 8px !important; /* Space between buttons */
+    align-items: flex-end !important; /* Keeps button flush to the right */
+  }
+
+  .nav-btn {
+    width: 200px !important; 
+    padding: 15px 30px; 
+    font-size: 1.2rem !important;
+    line-height: 1;
+  }
 }

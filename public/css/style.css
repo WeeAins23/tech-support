@@ -135,7 +135,6 @@ hr {
 
 /* Login Button */
 .login-btn {
-    /* Your requested #2E73EA + a lighter blue for the start of the gradient */
     background: linear-gradient(135deg, #56a1ff 0%, #2e73ea 100%);
     border: none;
     border-radius: 50px;
@@ -149,7 +148,6 @@ hr {
 
 /* Register Button */
 .register-btn {
-    /* Your requested #8C15EA + a lighter purple for the start of the gradient */
     background: linear-gradient(135deg, #ba68ff 0%, #8c15ea 100%);
     border: none;
     border-radius: 50px;

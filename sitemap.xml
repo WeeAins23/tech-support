@@ -4,36 +4,36 @@
     <loc>https://tech-support.com/</loc>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-30</lastmod>
   </url>
   <url>
     <loc>https://tech-support.com/login</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-30</lastmod>
   </url>
   <url>
     <loc>https://tech-support.com/register</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-30</lastmod>
   </url>
   <url>
     <loc>https://tech-support.com/faqs</loc>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-30</lastmod>
   </url>
   <url>
     <loc>https://tech-support.com/privacy</loc>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-30</lastmod>
   </url>
   <url>
     <loc>https://tech-support.com/terms</loc>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-30</lastmod>
   </url>
 </urlset>

@@ -36,7 +36,7 @@ const Browser = () => {
         {/* Section 1: The Address Bar */}
         <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
-            1. The Address Bar
+            The Address Bar
           </h2>
           <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
             The **Address Bar** is the long white box at the top of your screen. This is where you type the name of the place you want to go.
@@ -50,7 +50,7 @@ const Browser = () => {
         {/* Section 2: Navigation Buttons */}
         <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px', backgroundColor: '#f9fafb' }}>
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
-            2. Moving Back and Forth
+            Moving Back and Forth
           </h2>
           <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
             Browsers have arrows that let you move between pages you've already visited.
@@ -73,7 +73,7 @@ const Browser = () => {
         {/* Section 3: Browser Tabs */}
         <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
-            3. Using Tabs
+            Using Tabs
           </h2>
           <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
             **Tabs** allow you to keep more than one website open at the same time. Think of them like bookmarks in a book.
@@ -102,6 +102,8 @@ const Browser = () => {
           )}
         </div>
       </div>
+      {/* Manual spacer at the bottom of dashboard */}
+        <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );
 };
