@@ -99,6 +99,18 @@ html, body {
   justify-content: center;
 }
 
+.nav-btn, 
+.nav-btn:visited, 
+.nav-btn:focus {
+  color: white !important; /* Forces the text to stay white */
+  text-decoration: none !important; /* Prevents underlines */
+  outline: none !important;
+}
+
+.nav-btn:active, .nav-btn:focus {
+  color: black !important;
+}
+
 .nav-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -110,8 +122,22 @@ html, body {
   text-align: center;
 }
 
+.nav-btn:active {
+  color: black !important;
+  background-color: #f3f4f6 !important;
+}
+
+.login-btn:active {
+  background-color: #2563eb !important; /* A slightly darker blue */
+}
+
+.register-btn:active {
+  background-color: #9333ea !important; /* A slightly darker purple */
+}
+
 /* --- TABLET VIEW STYLES --- */
 @media (min-width: 768px) {
+  /* Force the nav bar height */
   .custom-nav {
     height: 100px !important;
     display: flex !important;
@@ -119,42 +145,37 @@ html, body {
     padding: 0 !important;
   }
 
-  .custom-nav .nav-flex-container {
+  /* Target the specific div with BOTH classes */
+  .container.nav-flex-container {
     display: flex !important;
-    flex-direction: row !important; /* Logo left, buttons right */
-    justify-content: space-between !important; /* Pushes logo left, buttons right */
-    width: 100vw !important;
-    max-width: 100vw !important;
-    padding-left: 5% !important;
-    padding-right: 5% !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: 100% !important; 
+    max-width: 100% !important; 
+    padding-left: 30px !important; 
+    padding-right: 30px !important;
     margin: 0 !important;
   }
 
-  .nav-flex-container {
-    display: flex;
-    flex-direction: row; /* Split logo left, buttons right */
-    justify-content: space-between !important; /* Pushes the logo to the left and buttons to the right */
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 40px !important;
-  }
-
-  .nav-logo{
-    height: 60px !important; /* Adjust as needed for tablet */
+  /* Logo sizing */
+  .nav-logo {
+    height: 60px !important;
     width: auto !important;
   }
 
+  /* Button grouping on the right */
   .nav-button-group {
     display: flex !important;
-    flex-direction: column !important; /* Vertical stack on tablet */
-    gap: 8px !important; /* Space between buttons */
-    align-items: flex-end !important; /* Keeps button flush to the right */
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: flex-end !important;
   }
 
+  /* Big buttons */
   .nav-btn {
-    width: 200px !important; 
-    padding: 15px 30px; 
-    font-size: 1.2rem !important;
-    line-height: 1;
+    width: 200px !important;
+    height: 50px !important;
+    padding: 15px 0 !important;
+    font-size: 2rem !important;
   }
 }

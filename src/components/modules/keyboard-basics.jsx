@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import confetti from 'canvas-confetti';
 
 const KeyboardBasics = () => {
   const [score, setScore] = useState(0);
@@ -7,7 +8,7 @@ const KeyboardBasics = () => {
   const [gameState, setGameState] = useState("start"); 
   const [keyDeck, setKeyDeck] = useState([]); // Stores our 20 unique keys
 
-  // 1. Function to create a fresh, shuffled deck of 20 unique keys
+  // Function to create a fresh, shuffled deck of 20 unique keys
   const startNewGame = () => {
     const allKeys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
     
@@ -23,7 +24,7 @@ const KeyboardBasics = () => {
     setGameState("playing");
   };
 
-  // 2. Handle the Key Press
+  // Handle the Key Press
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (gameState !== "playing") return;
@@ -47,7 +48,7 @@ const KeyboardBasics = () => {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [gameState, keyDeck, score]);
 
-  // 3. Independent Timer
+  // Independent Timer
   useEffect(() => {
     let timer;
     if (gameState === "playing") {
@@ -64,6 +65,19 @@ const KeyboardBasics = () => {
     }
     return () => clearInterval(timer);
   }, [gameState]);
+
+  // Confetti celebration when the user wins
+  useEffect(() => {
+  if (gameState === "win") {
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.3 },
+      colors: ['#26d9ca', '#3b82f6', '#a855f7'], // Your project colors
+      zIndex: 9999, // Ensures it's above your navigation
+    });
+  }
+}, [gameState]); // Only runs when gameState changes
 
   return (
     <div id="keyboard-module" className="w-full min-h-screen bg-white font-sans">
@@ -116,9 +130,9 @@ const KeyboardBasics = () => {
           </>
         )}
 
-        {/* ... Win and Lose screens remain the same as previous code ... */}
+        {/* Win the game logic */}
         {gameState === "win" && (
-          <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#e0fff4' }}>
+          <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#e0fff4', textAlign: 'center', position: 'relative', zIndex: 10 }}>
             <h2 className="text-4xl font-black mb-6 uppercase">Well Done!</h2>
             <p className="text-2xl mb-10">You've found all 20 unique keys!</p>
             <Link to="/dashboard" style={{ backgroundColor: 'black', color: '#26d9ca', padding: '20px 40px', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'none', border: '3px solid black', display: 'inline-block' }}>
@@ -127,6 +141,7 @@ const KeyboardBasics = () => {
           </div>
         )}
 
+        {/* Lose the game logic */}
         {gameState === "lose" && (
           <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#fff0f0' }}>
             <h2 className="text-4xl font-black mb-6 uppercase">Time's Up!</h2>

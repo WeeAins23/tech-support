@@ -133,7 +133,7 @@ hr {
     color: white !important;
 }
 
-/* Login Button */
+/* Login Button - Navigation */
 .login-btn {
     background: linear-gradient(135deg, #56a1ff 0%, #2e73ea 100%);
     border: none;
@@ -146,7 +146,7 @@ hr {
     transition: all 0.3s ease;
 }
 
-/* Register Button */
+/* Register Button - Navigation */
 .register-btn {
     background: linear-gradient(135deg, #ba68ff 0%, #8c15ea 100%);
     border: none;
@@ -367,4 +367,111 @@ header .hero-image {
   #about img {
     margin: 50px 0;
   }
+}
+
+
+/* Login & Register pages */
+
+.login-page-wrapper, .register-page-wrapper {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Adjusting this value pulls the footer up */
+  min-height: 70vh; 
+  padding: 40px 20px;
+}
+
+.login-box, .register-box {
+  border: 4px solid black;
+  padding: 40px;
+  background-color: white;
+  width: 100%;
+  max-width: 450px; /* Tablet view optimization */
+  box-shadow: 8px 8px 0px black; /* Your chunky brand style */
+}
+
+.login-box h1, .register-box h1 {
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: black;
+}
+
+/* --- Form Elements --- */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.login-input, .register-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid black;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Login Button only */
+.login-submit-btn {
+  width: 100%;
+  background-color: #3b82f6;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  display: inline-block;
+}
+
+.login-submit-btn:hover {
+  background-color: #2563eb; /* Slightly darker blue on hover */
+}
+
+.login-submit-btn:active {
+  transform: scale(0.96); /* Subtle "push" effect when Harold clicks */
+}
+
+/* Register Button only */
+
+.register-submit-btn {
+  width: 100%;
+  background-color: #a855f7;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;           /* Removes the black border for this specific style */
+  border-radius: 50px;    /* This creates the pill shape in your image */
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 10px;
+}
+
+.register-submit-btn:hover {
+  background-color: #9333ea; /* Slightly darker on hover */
+}
+
+.register-submit-btn:active {
+  transform: scale(0.96); /* "Squish" effect when clicked */
+}
+
+.auth-footer-spacer {
+  height: 20px;
 }

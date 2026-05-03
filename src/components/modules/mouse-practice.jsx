@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import confetti from 'canvas-confetti';
 
 const MousePractice = () => {
   const [score, setScore] = useState(0);
@@ -7,25 +8,36 @@ const MousePractice = () => {
   const [gameState, setGameState] = useState("start"); // "start", "playing", "win", "lose"
   const [position, setPosition] = useState({ top: "50%", left: "50%" });
 
+  // --- NEW: Confetti Trigger Effect ---
+  useEffect(() => {
+    if (gameState === "win") {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.3 }, // Positioned higher up for tablet view
+        colors: ['#26d9ca', '#3b82f6', '#a855f7'],
+        zIndex: 9999,
+      });
+    }
+  }, [gameState]);
+
   // Timer Logic
-    useEffect(() => {
+  useEffect(() => {
     let timer;
     if (gameState === "playing") {
-        timer = setInterval(() => {
+      timer = setInterval(() => {
         setTimeLeft((prev) => {
-            if (prev <= 1) {
+          if (prev <= 1) {
             clearInterval(timer);
             setGameState("lose");
             return 0;
-            }
-            return prev - 1;
+          }
+          return prev - 1;
         });
-        }, 1000);
+      }, 1000);
     }
-  
-  // Cleanup: This stops the timer when the component unmounts or state changes
-  return () => clearInterval(timer);
-}, [gameState]); // Removed 'score' and 'timeLeft' from here
+    return () => clearInterval(timer);
+  }, [gameState]);
 
   const startGame = () => {
     setScore(0);
@@ -39,6 +51,8 @@ const MousePractice = () => {
 
     if (newScore >= 20) {
       setGameState("win");
+      // Mark as complete for the dashboard
+      localStorage.setItem('mouseComplete', 'true');
     } else {
       const randomTop = Math.floor(Math.random() * 70) + 15;
       const randomLeft = Math.floor(Math.random() * 70) + 15;
@@ -120,8 +134,7 @@ const MousePractice = () => {
           </div>
         )}
       </div>
-      {/* Manual spacer at the bottom of dashboard */}
-        <div style={{ height: '100px', width: '100%' }}></div>
+      <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );
 };
