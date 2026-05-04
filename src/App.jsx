@@ -34,8 +34,7 @@ const App = () => {
       <div className="App min-h-screen flex flex-col m-0 p-0">
         
         <Navigation />
-
-        <div className="flex-grow mb-20">
+        <main className="content-wrapper flex-grow mb-20">
           <Routes>
             <Route 
               path="/" 
@@ -53,7 +52,7 @@ const App = () => {
             <Route path="/search" element={<Search />} />
             <Route path="/email" element={<Email />} />
           </Routes>
-        </div>
+        </main>
         
         <Footer />
         

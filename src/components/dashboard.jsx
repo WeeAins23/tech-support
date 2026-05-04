@@ -5,7 +5,7 @@ const Dashboard = () => {
   const username = "User"; 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  // 1. Check localStorage to see which modules are finished
+  // Check localStorage to see which modules are finished
   const [progress, setProgress] = useState({
     mouse: localStorage.getItem('mouseComplete') === 'true',
     keyboard: localStorage.getItem('keyboardComplete') === 'true',
@@ -14,14 +14,14 @@ const Dashboard = () => {
     email: localStorage.getItem('emailComplete') === 'true',
   });
 
-  // 2. Handle window resizing for responsive "Availability" checks
+  // Handle window resizing for responsive "Availability" checks
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 3. Module Data (Matching your Tablet Wireframe layout)
+  // Module Data
   const modules = [
     { title: "Mouse Practice", path: "/mouse-practice", isComplete: progress.mouse, minWidth: 1024 }, 
     { title: "Keyboard Basics", path: "/keyboard-basics", isComplete: progress.keyboard, minWidth: 768 }, 
@@ -41,18 +41,20 @@ const Dashboard = () => {
 
         {/* Main Modules Container - Visualized in Tablet User Dashboard wireframe */}
         <div style={{ border: '4px solid black', padding: '20px', backgroundColor: 'white' }}>
-          <h2 style={{ color: 'black', textTransform: 'uppercase', textAlign: 'center', marginBottom: '30px', fontSize: '2rem', fontWeight: '800' }}>
+          <h2 style={{ color: 'black', textTransform: 'uppercase', textAlign: 'center', marginBottom: '30px', fontSize: '3rem', fontWeight: '800' }}>
             Modules
           </h2>
 
-          {/* 
-              Responsive Grid:
-              - Mobile: 1 column
-              - Tablet/Desktop: 2 columns (md:grid-cols-2) 
-          */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row lg:flex-wrap lg:justify-center gap-8" style={{ 
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: '30px'
+          }}
+          >
             {modules.map((mod, index) => {
-              const isAvailable = screenWidth >= mod.minWidth;
+            const isAvailable = screenWidth >= mod.minWidth;
 
               return (
                 <div 
@@ -64,11 +66,20 @@ const Dashboard = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    minHeight: '280px', // Creates the "Square" look from the wireframe
+                    minHeight: '280px', 
+                    width: screenWidth >= 768 ? 'calc(33% - 20px)' : '100%',
+                    minWidth: '300px',
                     opacity: isAvailable ? 1 : 0.7 
                   }}
                 >
-                  <h3 style={{ color: 'black', textTransform: 'uppercase', marginBottom: '20px', fontSize: '1.4rem', fontWeight: 'bold', textAlign: 'center' }}>
+                  <h3 style={{ 
+                    color: 'black',
+                    textTransform: 'uppercase',
+                    marginBottom: '20px',
+                    fontSize: '2.5rem',
+                    fontWeight: '900',
+                    textAlign: 'center'
+                    }}>
                     {mod.title}
                   </h3>
 

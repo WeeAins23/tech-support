@@ -9,6 +9,11 @@ const Search = () => {
     localStorage.setItem('searchComplete', 'true');
   };
 
+  const [isZoomed, setIsZoomed] = useState(false);
+  
+  const toggleZoom = () => setIsZoomed(!isZoomed);
+  
+
   return (
     <div id="search-module" className="w-full min-h-screen bg-white font-sans pb-20">
       <div className="container mx-auto px-10 py-12">
@@ -38,13 +43,72 @@ const Search = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             The Search Box
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             To start, you look for a large white box, usually in the middle of the page. This is where you type your "Keywords."
           </p>
-          <div style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center', backgroundColor: '#fdfdfd' }}>
+          <div 
+            onClick={toggleZoom}
+            style={{ 
+              padding: '10px', 
+              textAlign: 'center', 
+              backgroundColor: '#fdfdfd',
+              cursor: 'zoom-in' // Changes cursor to a magnifying glass
+            }}
+    >
             
-            <p className="text-sm italic text-gray-500 mt-2">Example: The Google search box waiting for you to type.</p>
+            <img 
+              src="/img/google-home-page.png" 
+              alt="An example image of the Google search engine homepage with a large search box in the centre" 
+              style={{ 
+                maxWidth: '100%',
+                height: 'auto',
+                display: 'block',
+                margin: '0 auto' }} 
+            />
+            <p style={{ fontSize: '0.9rem', marginTop: '10px', color: '#666' }}>
+              (Tap image to see it bigger)
+            </p>
           </div>
+          {/* Full Screen Overlay (Lightbox) */}
+          {isZoomed && (
+            <div 
+              onClick={toggleZoom}
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                backgroundColor: 'rgba(0,0,0,0.9)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 10000,
+                cursor: 'zoom-out'
+              }}
+            >
+              <img 
+                src="/img/google-home-page.png" 
+                alt="Enlarged Google homepage view" 
+                style={{ maxWidth: '95%', maxHeight: '95%', border: '2px solid white' }} 
+              />
+              <button 
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  backgroundColor: 'white',
+                  border: 'none',
+                  fontSize: '2rem',
+                  padding: '10px 20px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+              >
+                ✕ CLOSE
+              </button>
+            </div>
+          )}
         </section>
 
         {/* Section 2: Keywords */}
@@ -52,7 +116,7 @@ const Search = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             Using Keywords
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             You don't need to type perfect sentences. Just type the most important words.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -72,7 +136,7 @@ const Search = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             Picking a Result
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             After you press 'Enter', the browser shows a list of websites. Look for the Large Blue Text - this is the link that will take you to that website.
           </p>
           <div style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center' }}>

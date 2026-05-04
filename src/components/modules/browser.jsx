@@ -9,6 +9,10 @@ const Browser = () => {
     localStorage.setItem('browserComplete', 'true');
   };
 
+  const [isZoomed, setIsZoomed] = useState(false);
+  
+  const toggleZoom = () => setIsZoomed(!isZoomed);
+
   return (
     <div id="browser-module" className="w-full min-h-screen bg-white font-sans pb-20">
       <div className="container mx-auto px-10 py-12">
@@ -38,10 +42,10 @@ const Browser = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             The Address Bar
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
-            The **Address Bar** is the long white box at the top of your screen. This is where you type the name of the place you want to go.
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+            The Address Bar is the long white box at the top of your screen. This is where you type the name of the place you want to go.
           </p>
-          <div style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center', backgroundColor: '#fdfdfd' }}>
+          <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#fdfdfd' }}>
             
             <p className="text-sm italic text-gray-500 mt-2">Example: Typing "www.google.com" into the bar.</p>
           </div>
@@ -52,7 +56,7 @@ const Browser = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             Moving Back and Forth
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             Browsers have arrows that let you move between pages you've already visited.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -75,12 +79,72 @@ const Browser = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             Using Tabs
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
-            **Tabs** allow you to keep more than one website open at the same time. Think of them like bookmarks in a book.
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+            Tabs allow you to keep more than one website open at the same time. Think of them like bookmarks in a book.
           </p>
-          <div style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center' }}>
+          <div 
+            onClick={toggleZoom}
+            style={{ 
+              padding: '10px', 
+              textAlign: 'center', 
+              backgroundColor: '#fdfdfd',
+              cursor: 'zoom-in' // Changes cursor to a magnifying glass
+            }}
+          >
             
+            <img 
+              src="/img/browser-tabs.png" 
+              alt="An example image of several browser tabs open at once" 
+              style={{ 
+                maxWidth: '100%',
+                height: 'auto',
+                display: 'block',
+                margin: '0 auto' }} 
+            />
+            <p style={{ fontSize: '0.9rem', marginTop: '10px', color: '#666' }}>
+              (Tap image to see it bigger)
+            </p>
           </div>
+          {/* Full Screen Overlay (Lightbox) */}
+          {isZoomed && (
+            <div 
+              onClick={toggleZoom}
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                backgroundColor: 'rgba(0,0,0,0.9)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 10000,
+                cursor: 'zoom-out'
+              }}
+            >
+              <img 
+                src="/img/browser-tabs.png" 
+                alt="Enlarged browser tabs view" 
+                style={{ maxWidth: '95%', maxHeight: '95%', border: '2px solid white' }} 
+              />
+              <button 
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  backgroundColor: 'white',
+                  border: 'none',
+                  fontSize: '2rem',
+                  padding: '10px 20px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+              >
+                ✕ CLOSE
+              </button>
+            </div>
+          )}
         </section>
 
         {/* Completion Area */}

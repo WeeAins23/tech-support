@@ -9,6 +9,10 @@ const Email = () => {
     localStorage.setItem('emailComplete', 'true');
   };
 
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const toggleZoom = () => setIsZoomed(!isZoomed);
+
   return (
     <div id="email-module" className="w-full min-h-screen bg-white font-sans pb-20">
       <div className="container mx-auto px-10 py-12">
@@ -23,7 +27,7 @@ const Email = () => {
           </Link>
         </div>
 
-        {/* Introduction (Clean Style) */}
+        {/* Introduction */}
         <div style={{ marginBottom: '50px' }}>
           <p style={{ fontSize: '1.6rem', lineHeight: '1.5', color: 'black', fontWeight: '700' }}>
             Email is a way to send and receive digital letters over the internet.
@@ -38,13 +42,73 @@ const Email = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             Your Inbox
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             The Inbox is where all your incoming mail is kept. Messages that you haven't read yet will usually appear in <b>bold text</b> to help them stand out.
           </p>
-          <div style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center', backgroundColor: '#fdfdfd' }}>
+          <div 
+            onClick={toggleZoom}
+            style={{ 
+              border: '2px dashed #ccc', 
+              padding: '10px', 
+              textAlign: 'center', 
+              backgroundColor: '#fdfdfd',
+              cursor: 'zoom-in' // Changes cursor to a magnifying glass
+            }}
+    >
             
-            <p className="text-sm italic text-gray-500 mt-2">Example: A list of messages waiting to be opened.</p>
+            <img 
+              src="/img/email.jpg" 
+              alt="An example image of a digital email inbox list" 
+              style={{ 
+                maxWidth: '100%',
+                height: 'auto',
+                display: 'block',
+                margin: '0 auto' }} 
+            />
+            <p style={{ fontSize: '0.9rem', marginTop: '10px', color: '#666' }}>
+              (Tap image to see it bigger)
+            </p>
           </div>
+          {/* Full Screen Overlay (Lightbox) */}
+          {isZoomed && (
+            <div 
+              onClick={toggleZoom}
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                backgroundColor: 'rgba(0,0,0,0.9)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 10000,
+                cursor: 'zoom-out'
+              }}
+            >
+              <img 
+                src="/img/email.jpg" 
+                alt="Enlarged inbox view" 
+                style={{ maxWidth: '95%', maxHeight: '95%', border: '2px solid white' }} 
+              />
+              <button 
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  backgroundColor: 'white',
+                  border: 'none',
+                  fontSize: '2rem',
+                  padding: '10px 20px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+              >
+                ✕ CLOSE
+              </button>
+            </div>
+          )}
         </section>
 
         {/* Section 2: Parts of an Email */}
@@ -52,17 +116,17 @@ const Email = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             Writing a Message
           </h2>
-          <p style={{ fontSize: '1.25rem', marginBottom: '20px' }}>
+          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             When you want to send a message, there are three important boxes you need to fill in:
           </p>
           <div className="space-y-4">
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white' }}>
+            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white', fontSize: '1.75rem' }}>
               <strong>To:</strong> Where you type the recipient's email address (like <i>friend@email.com</i>).
             </div>
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white' }}>
+            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white', fontSize: '1.75rem' }}>
               <strong>Subject:</strong> A short title so the person knows what the email is about.
             </div>
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white' }}>
+            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white', fontSize: '1.75rem' }}>
               <strong>Body:</strong> The main area where you type your letter.
             </div>
           </div>
@@ -73,7 +137,7 @@ const Email = () => {
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             A Note on Safety
           </h2>
-          <p style={{ fontSize: '1.25rem', lineHeight: '1.6' }}>
+          <p style={{ fontSize: '1.75rem', lineHeight: '1.6' }}>
             Just like the Junk Mail that comes through your door, you might get Spam/Junk emails. If you receive an email from someone you don't know, it is best <b>not to click</b> any links inside it.
           </p>
           <div style={{ marginTop: '20px', textAlign: 'center' }}>

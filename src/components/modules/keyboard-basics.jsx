@@ -142,15 +142,61 @@ const KeyboardBasics = () => {
         )}
 
         {/* Lose the game logic */}
-        {gameState === "lose" && (
-          <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#fff0f0' }}>
-            <h2 className="text-4xl font-black mb-6 uppercase">Time's Up!</h2>
-            <p className="text-2xl mb-10">You found {score} keys. Want to try a new set of 20?</p>
-            <button onClick={startNewGame} style={{ backgroundColor: 'black', color: '#26d9ca', padding: '20px 40px', fontSize: '1.5rem', fontWeight: 'bold', border: '3px solid black', cursor: 'pointer' }}>
-              TRY AGAIN
-            </button>
-          </div>
-        )}
+        {/* Lose the game logic */}
+{gameState === "lose" && (
+  <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#fff0f0' }}>
+    <h2 className="text-4xl font-black mb-6 uppercase">Time's Up!</h2>
+    <p className="text-2xl mb-10">You found {score} keys. Want to try a new set of 20?</p>
+    
+    {/* Flex container set to column to stack the buttons */}
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      gap: '20px' 
+    }}>
+      
+      {/* Primary Action: Try Again */}
+      <button 
+        onClick={startNewGame} 
+        style={{ 
+          backgroundColor: 'black', 
+          color: '#26d9ca', 
+          padding: '20px 40px', 
+          fontSize: '1.5rem', 
+          fontWeight: 'bold', 
+          border: '3px solid black', 
+          cursor: 'pointer',
+          width: '100%',
+          maxWidth: '400px' // Keeps the button from getting too wide on desktop
+        }}
+      >
+        TRY AGAIN
+      </button>
+
+      {/* Secondary Action: Return to Dashboard */}
+      <Link 
+        to="/dashboard" 
+        style={{ 
+          backgroundColor: 'white', 
+          color: 'black', 
+          padding: '15px 40px', 
+          fontSize: '1.2rem', 
+          fontWeight: 'bold', 
+          textDecoration: 'none', 
+          border: '3px solid black', 
+          display: 'block',
+          width: '100%',
+          maxWidth: '400px',
+          textAlign: 'center'
+        }}
+      >
+        RETURN TO DASHBOARD
+      </Link>
+
+    </div>
+  </div>
+)}
 
       </div>
       {/* Manual spacer at the bottom of dashboard */}

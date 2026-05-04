@@ -412,7 +412,15 @@ header .hero-image {
   font-weight: 800;
   margin-bottom: 8px;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
+  color: black;
+}
+
+/* Optional: Make the 'Login' heading bigger to match */
+.login-box h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .login-input, .register-input {
@@ -474,4 +482,81 @@ header .hero-image {
 
 .auth-footer-spacer {
   height: 20px;
+}
+
+/* Centres the hero image on larger screens */
+@media (min-width: 768px) {
+  .hero-image {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: 30px;
+  }
+
+  .hero-image img {
+    max-width: 100%; 
+    height: auto;
+  }
+}
+
+/* Moves logo to left on larger screens */
+@media (min-width: 768px) {
+  .custom-nav .nav-flex-container {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: space-between !important;
+    padding-left: 0 !important; 
+    padding-right: 20px !important; 
+  }
+
+  .nav-flex-container {
+    flex-direction: row !important;
+    align-items: center !important;
+    margin: 0 !important;
+  }
+
+  .navbar-brand {
+    padding-left: 15px !important; /* Adjust this to move it closer to the edge */
+    margin-left: 0 !important;
+  }
+
+  .navbar-header {
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    display: block !important;
+  }
+
+  .nav-logo {
+    height: 50px !important; 
+    width: auto;
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Ensure the container allows the buttons to grow */
+  .nav-button-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 10px 0;
+  }
+
+  /* Target the buttons specifically to override Bootstrap defaults */
+  .nav-btn.login-btn, 
+  .nav-btn.register-btn {
+    font-size: 2rem !important; /* Larger text */
+    font-weight: 900 !important;  /* Extra bold */
+    padding: 12px 20px !important; /* More clickable area */
+    min-width: 140px !important;   /* Prevents them from being tiny squares */
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none !important;
+  }
 }

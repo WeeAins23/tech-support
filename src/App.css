@@ -8,6 +8,11 @@ html, body, .App {
   overflow-x: hidden;
 }
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
 @media screen and (max-width: 400px) {
   #about,
   #faqs,
@@ -45,7 +50,7 @@ html, body, .App {
 .App {
   text-align: center;
   min-height: 100vh !important;
-  display: block;
+  display: flex;
   flex-direction: column;
   margin: 0;
   height: auto !important;
@@ -56,7 +61,14 @@ html, body {
   height: auto !important; 
   min-height: 100% !important;
   overflow-y: auto !important;
-  
+}
+
+main, .content-wrapper {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
 }
 
 #menu.navbar-default {
