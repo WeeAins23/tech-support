@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
       <div className="container mx-auto px-10 py-12">
         
         <h1
-        style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px' }}
+        style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px', fontSize: '5.5rem', fontWeight: '900' }}
         className="!text-black text-5xl font-extrabold mb-10 border-b-4 border-[#26d9ca] pb-4 !uppercase">
           Privacy Policy
         </h1>
@@ -22,7 +22,7 @@ const PrivacyPolicy = () => {
           <section>
             <h2 className="text-3xl font-bold mb-4 uppercase">Information We Collect</h2>
             <p className="text-xl leading-relaxed">
-              We only collect a **username** and a **password** so that you can log back in and see your progress. We do not ask for your real name, address, or bank details.
+              We only collect a <b>username</b> and a <b>password</b> so that you can log back in and see your progress. We do not ask for your real name, address, or bank details.
             </p>
           </section>
 
@@ -31,6 +31,7 @@ const PrivacyPolicy = () => {
             <p className="text-xl leading-relaxed mb-4">
               We only use your information to:
             </p>
+            {/* list-disc: Adds bullet points; pl-8: Adds padding to the left for indentation */}
             <ul className="list-disc pl-8 space-y-2 text-xl">
               <li>Remember which lessons you have finished.</li>
               <li>Keep your account secure.</li>
@@ -48,7 +49,7 @@ const PrivacyPolicy = () => {
           <section className="bg-gray-100 p-6 rounded-lg border-l-8 border-[#26d9ca]">
             <h2 className="text-2xl font-bold mb-2">Need help?</h2>
             <p className="text-lg">
-              If you have any questions about your information, please visit our **FAQs** page or talk to your local support group.
+              If you have any questions about your information, please visit our <b>FAQs</b> page or talk to your local support group.
             </p>
           </section>
         </div>

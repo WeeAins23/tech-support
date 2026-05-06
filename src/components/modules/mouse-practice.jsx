@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import confetti from 'canvas-confetti';
 
 const MousePractice = () => {
+  // score: counts successful clicks (0-20)
   const [score, setScore] = useState(0);
+  // timeLeft: countdown timer starting at 60 seconds
   const [timeLeft, setTimeLeft] = useState(60);
-  const [gameState, setGameState] = useState("start"); // "start", "playing", "win", "lose"
+  // gameState: switches between "start", "playing", "win", and "lose" screens
+  const [gameState, setGameState] = useState("start"); 
+  // position: an object storing the CSS coordinates for the clickable box
   const [position, setPosition] = useState({ top: "50%", left: "50%" });
 
-  // --- NEW: Confetti Trigger Effect ---
+  // Confetti Effect: Triggers only once when the user wins
   useEffect(() => {
     if (gameState === "win") {
       confetti({
@@ -21,24 +25,25 @@ const MousePractice = () => {
     }
   }, [gameState]);
 
-  // Timer Logic
+  // Timer: Counts down every 1000ms (1 second) when the game is active
   useEffect(() => {
     let timer;
     if (gameState === "playing") {
       timer = setInterval(() => {
         setTimeLeft((prev) => {
           if (prev <= 1) {
-            clearInterval(timer);
-            setGameState("lose");
+            clearInterval(timer); // Stops the clock
+            setGameState("lose"); // Triggers game over
             return 0;
           }
           return prev - 1;
         });
       }, 1000);
     }
-    return () => clearInterval(timer);
+    return () => clearInterval(timer); // Cleanup timer on exit
   }, [gameState]);
 
+  // Reset game variables to initial "playing" state
   const startGame = () => {
     setScore(0);
     setTimeLeft(60);
@@ -54,8 +59,12 @@ const MousePractice = () => {
       // Mark as complete for the dashboard
       localStorage.setItem('mouseComplete', 'true');
     } else {
+      // Calculate a random location within the play area
+      // Uses 15% to 85% range so the box doesn't touch the edges of the play area
       const randomTop = Math.floor(Math.random() * 70) + 15;
       const randomLeft = Math.floor(Math.random() * 70) + 15;
+
+      // Update the position state to move the box
       setPosition({ top: `${randomTop}%`, left: `${randomLeft}%` });
     }
   };
@@ -64,6 +73,7 @@ const MousePractice = () => {
     <div id="mouse-practice" className="w-full min-h-screen bg-white font-sans">
       <div className="container mx-auto px-10 py-12 text-center">
         
+        {/* Title stays at the top throughout the game */}
         <h1 style={{ color: 'black', textTransform: 'uppercase', fontSize: '2.5rem', fontWeight: '900', marginBottom: '10px' }}>
           Mouse Practice
         </h1>
@@ -85,24 +95,26 @@ const MousePractice = () => {
         {/* PLAYING SCREEN */}
         {gameState === "playing" && (
           <>
+          {/* Heads Up Display (HUD) */}
             <div className="flex justify-around mb-6">
               <p className="text-2xl font-bold">Time: <span style={{ color: timeLeft <= 10 ? 'red' : 'black' }}>{timeLeft}s</span></p>
               <p className="text-2xl font-bold">Clicks: {score}/20</p>
             </div>
             
+            {/* Play Area: relative positioning allows the button inside to move freely */}
             <div style={{ border: '4px solid black', height: '500px', position: 'relative', backgroundColor: '#f9fafb', overflow: 'hidden' }}>
               <button
                 onClick={handleTargetClick}
                 style={{
-                  position: 'absolute',
-                  top: position.top,
-                  left: position.left,
+                  position: 'absolute', // Allows to use Top/Left coordinates
+                  top: position.top, // Set by a random generator
+                  left: position.left, // Set by a random generator
                   width: '120px',
                   height: '120px',
                   backgroundColor: '#26d9ca',
                   border: '4px solid black',
                   cursor: 'pointer',
-                  transform: 'translate(-50%, -50%)',
+                  transform: 'translate(-50%, -50%)', // Ensures the 'center' of the box is at the coordinates
                   fontWeight: '900'
                 }}
               >
@@ -134,6 +146,7 @@ const MousePractice = () => {
           </div>
         )}
       </div>
+      {/* Manual spacer at the bottom of the page*/}
       <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );

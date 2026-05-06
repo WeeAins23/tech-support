@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Email = () => {
+  // hasRead: Tracks if the user clicked the "Finished Reading" button
   const [hasRead, setHasRead] = useState(false);
 
+  //  completeModule: Updates local state and saves completion to broser storage
   const completeModule = () => {
     setHasRead(true);
     localStorage.setItem('emailComplete', 'true');
   };
 
+  // isZoomed: Boolean to track if the email screenshot is enlarged
   const [isZoomed, setIsZoomed] = useState(false);
 
+  // toggleZoom: Toggles the zoom state when the image is clicked
   const toggleZoom = () => setIsZoomed(!isZoomed);
 
   return (
@@ -45,6 +49,7 @@ const Email = () => {
           <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             The Inbox is where all your incoming mail is kept. Messages that you haven't read yet will usually appear in <b>bold text</b> to help them stand out.
           </p>
+          {/* Zoom Trigger Container */}
           <div 
             onClick={toggleZoom}
             style={{ 
@@ -69,7 +74,7 @@ const Email = () => {
               (Tap image to see it bigger)
             </p>
           </div>
-          {/* Full Screen Overlay (Lightbox) */}
+          {/* Full Screen Overlay (Lightbox) - only renders when isZOomed is true*/}
           {isZoomed && (
             <div 
               onClick={toggleZoom}
@@ -132,7 +137,7 @@ const Email = () => {
           </div>
         </section>
 
-        {/* Section 3: Staying Safe */}
+        {/* Section 3: Safety Advice */}
         <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
           <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
             A Note on Safety
@@ -147,6 +152,7 @@ const Email = () => {
 
         {/* Completion Area */}
         <div style={{ textAlign: 'center', marginTop: '60px' }}>
+          {/* Logic to swap the "Finished Reading" button for a "Module Complete" message */}
           {!hasRead ? (
             <button 
               onClick={completeModule}
@@ -164,7 +170,7 @@ const Email = () => {
           )}
         </div>
       </div>
-      {/* Manual spacer at the bottom of dashboard */}
+      {/* Manual spacer at the bottom of the page */}
         <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );

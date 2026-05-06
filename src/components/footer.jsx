@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  // currentYear: Use's the computer's clock to get the current year for the copyright notice
   const currentYear = new Date().getFullYear();
+  // isDesktop: Tracks if the window is wide enough foe a row-based layout or if it should stack in a column
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
+    // handleResize: Updates the isDesktop state whenever the window is dragged or rotated to a new size. 768px is the common breakpoint for switching between mobile and desktop layouts.
     const handleResize = () => setIsDesktop(window.innerWidth >= 768);
     window.addEventListener('resize', handleResize);
+    // Cleanup: Stops listening when the user leaves the page
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -21,6 +25,7 @@ const Footer = () => {
           maxWidth: '1400px', // Slightly wider to give the "Center" more room
           margin: '0 auto', 
           display: 'flex', 
+          // If Desktop, arrange in a row. If not, stack in a column and centre everything.
           flexDirection: isDesktop ? 'row' : 'column', 
           alignItems: 'center', 
           justifyContent: 'space-between',
@@ -28,7 +33,7 @@ const Footer = () => {
         }}
       >
         
-        {/* 1. Left Section (Logo) */}
+        {/* Logo */}
         <div style={{ 
           flex: isDesktop ? '1' : 'none', 
           display: 'flex', 
@@ -41,7 +46,7 @@ const Footer = () => {
           />
         </div>
 
-        {/* 2. Middle Section (Links) - Dead Centre */}
+        {/* Navigation Links */}
         <nav style={{ 
           flex: isDesktop ? '1' : 'none', 
           display: 'flex', 
@@ -61,20 +66,22 @@ const Footer = () => {
             }} 
           >
             <li><Link to="/faqs" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">FAQs</Link></li>
-            <li><a href="/sitemap.xml" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">Site Map</a></li>
             <li><Link to="/privacy" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">Privacy Policy</Link></li>
             <li><Link to="/terms" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">Terms Of Use</Link></li>
             <li><Link to="/dashboard" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">Dashboard</Link></li>
           </ul>
         </nav>
 
-        {/* 3. Right Section (Social Media) */}
+        {/* Social Media */}
         <div style={{ 
+          // If on desktop, push the icons to the right. If on mobile, centre them below the other content.
           flex: isDesktop ? '1' : 'none', 
           display: 'flex', 
           justifyContent: isDesktop ? 'flex-end' : 'center',
           gap: '20px'
         }}>
+          {/* target="_blank" will open the link in a new tab */}
+          {/* rel="noreferrer" prevents the new tab from accessing the referrer information */}
           <a href="https://facebook.com" target="_blank" rel="noreferrer">
             <i className="fa-brands fa-facebook" style={{ fontSize: '35px', color: 'black' }}></i>
           </a>
@@ -87,7 +94,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Copyright Section */}
+      {/* Copyright */}
       <div 
         style={{ 
           marginTop: '40px', 

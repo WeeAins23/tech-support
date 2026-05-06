@@ -6,7 +6,7 @@ const Terms = () => {
       <div className="container mx-auto px-10 py-12">
         
         <h1 
-        style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px' }}
+        style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px', fontSize: '5.5rem', fontWeight: '900' }}
         className="!text-black text-5xl font-extrabold mb-10 border-b-4 border-[#26d9ca] pb-4 !uppercase">
           Terms Of Use
         </h1>

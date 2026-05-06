@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Browser = () => {
+  // hasRead: A boolean (true/false) to track if the "Finish" button was clicked
   const [hasRead, setHasRead] = useState(false);
 
+  // function to save progress to the browser's memory (localStorage)
   const completeModule = () => {
     setHasRead(true);
     localStorage.setItem('browserComplete', 'true');
   };
 
+  // isZoomed: Tracks if the tab image is currently enlarged (lightbox mode)
   const [isZoomed, setIsZoomed] = useState(false);
   
+  // toggleZoom: Flips isZoomed betwen true and false to open/close the lightbox
   const toggleZoom = () => setIsZoomed(!isZoomed);
 
   return (
@@ -27,7 +31,7 @@ const Browser = () => {
           </Link>
         </div>
 
-        {/* --- CLEAN INTRODUCTION (No Box, No H2) --- */}
+        {/* Introduction Section */}
         <div style={{ marginBottom: '50px' }}>
           <p style={{ fontSize: '1.6rem', lineHeight: '1.5', color: 'black', fontWeight: '700' }}>
             A Web Browser is a piece of software (an "app") that lets you visit websites. 
@@ -59,6 +63,8 @@ const Browser = () => {
           <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             Browsers have arrows that let you move between pages you've already visited.
           </p>
+
+          {/* Stacks vertically on mobile, side-by-side on desktop */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white' }}>
               <strong style={{ fontSize: '1.4rem' }}>← Back Button</strong>
@@ -82,6 +88,7 @@ const Browser = () => {
           <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             Tabs allow you to keep more than one website open at the same time. Think of them like bookmarks in a book.
           </p>
+          {/* Clicking this div triggers the toggleZoom function */}
           <div 
             onClick={toggleZoom}
             style={{ 
@@ -105,7 +112,7 @@ const Browser = () => {
               (Tap image to see it bigger)
             </p>
           </div>
-          {/* Full Screen Overlay (Lightbox) */}
+          {/* Full Screen Overlay (Lightbox): Only appears if isZoomed is true */}
           {isZoomed && (
             <div 
               onClick={toggleZoom}
@@ -115,7 +122,7 @@ const Browser = () => {
                 left: 0,
                 width: '100vw',
                 height: '100vh',
-                backgroundColor: 'rgba(0,0,0,0.9)',
+                backgroundColor: 'rgba(0,0,0,0.9)', // 90% black transparency
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -157,6 +164,7 @@ const Browser = () => {
               I HAVE FINISHED READING
             </button>
           ) : (
+            // If they HAVE read, show the "Module Complete" success box
             <div style={{ border: '4px solid #00857a', padding: '30px', backgroundColor: '#e0fff4' }}>
               <h3 className="text-2xl font-black mb-4 uppercase">Module Complete!</h3>
               <Link to="/dashboard" style={{ color: 'black', fontWeight: 'bold', fontSize: '1.2rem' }}>
@@ -166,7 +174,7 @@ const Browser = () => {
           )}
         </div>
       </div>
-      {/* Manual spacer at the bottom of dashboard */}
+      {/* Manual spacer at the bottom of the page*/}
         <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );

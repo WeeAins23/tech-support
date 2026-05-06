@@ -8,6 +8,7 @@ export const Navigation = (props) => {
         
         {/* Logo Area */}
         <div className='navbar-header'>
+          {/* This ensures that clicking the logo always returns the user to the homepage */}
           <Link className="navbar-brand" to="/">
             <img src="/img/ts-logo.png" alt="Logo" className="nav-logo" />
           </Link>
@@ -15,9 +16,11 @@ export const Navigation = (props) => {
 
         {/* Button Area */}
         <div className='nav-button-group'>
+          {/* Redirects the user to the Login page component */}
           <Link to="/login" className="nav-btn login-btn">
             Login
           </Link>
+          {/* Redirects the user to the Register page component */}
           <Link to="/register" className="nav-btn register-btn">
             Register
           </Link>

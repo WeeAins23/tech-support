@@ -1,6 +1,8 @@
 import React from "react";
 
 const FAQ = () => {
+    // FAQs: an array of objects
+    // Each object represents one question-and-answer pair
     const faqs = [
         {
             question: "Is this safe to use?",
@@ -32,16 +34,23 @@ const FAQ = () => {
         <div id="faqs" className="w-full min-h-screen bg-white font-sans">
             <div className="container mx-auto px-10 py-12">
                 <h1 
-                style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px' }}
-                className="!text-black text-5xl font-extrabold mb-10 border-b-4 border-[#26d9ca] pb-3 uppercase">Frequently Asked Questions</h1>
+                style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px', fontSize: '5.5rem', fontWeight: '900' }}
+                className="text-5xl font-extrabold mb-10 pb-3 uppercase">Frequently Asked Questions</h1>
+                {/* space-y-8: A Tailwind class that adds consistent vertical gaps between each object */}
                 <div className="space-y-8">
+                    {/* The Map function: it takes each 'item' from the 'faqs' array and returns JSX */}
                     {faqs.map((item, index) => (
+                        // FAQ Card: Includes one question and one answer
                         <div key={index} className="border-2 border-black p-6 rounded-lg bg--gray-50">
-                            <h2 className="text-xl font-bold text-black mb-4">{item.question}</h2>
+                            {/* The Question: Styled in bold to stand out */}
+                            <h2 className="text-base font-bold text-black mb-4">{item.question}</h2>
+                            {/* The Answer: Styled with 'leading-relaxed' to make it easier to read */}
                             <p className="text-xl text-gray-800 leading-relaxed">{item.answer}</p>
                         </div>
                     ))}
                 </div>
+                {/* Manual spacer at the bottom of the page*/}
+                <div style={{ height: '100px' }}></div>
             </div>  
         </div>
     );

@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const username = "User"; 
+  // screenWidth: Tracks the current width of the browser window for responsive design
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  // Check localStorage to see which modules are finished
+  // progress: An object that checks localStorage for every module
+  // It converts the string 'true' to a real Boolean (true/false)
   const [progress, setProgress] = useState({
     mouse: localStorage.getItem('mouseComplete') === 'true',
     keyboard: localStorage.getItem('keyboardComplete') === 'true',
@@ -17,11 +19,17 @@ const Dashboard = () => {
   // Handle window resizing for responsive "Availability" checks
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
+    // Listen for the browser window changing size
     window.addEventListener("resize", handleResize);
+    // Cleanup: Remove the listener when leaving the dashboard
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Module Data
+  // title: Display name
+  // path: Where the Link takes the user
+  // isComplete: Boolean to show progress status
+  // minWidth: The minimum screen size (in pixels) required to play
   const modules = [
     { title: "Mouse Practice", path: "/mouse-practice", isComplete: progress.mouse, minWidth: 1024 }, 
     { title: "Keyboard Basics", path: "/keyboard-basics", isComplete: progress.keyboard, minWidth: 768 }, 
@@ -45,6 +53,7 @@ const Dashboard = () => {
             Modules
           </h2>
 
+          {/* Grid Layout: Handles the spacing and wrapping of the cards */}
           <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row lg:flex-wrap lg:justify-center gap-8" style={{ 
             display: 'flex',
             flexDirection: 'row',
@@ -53,7 +62,9 @@ const Dashboard = () => {
             gap: '30px'
           }}
           >
+            {/* Map Function: Loops through each module and creates a Card */}
             {modules.map((mod, index) => {
+              // Logic Check: Is the user's screen wide enough for this specific module?
             const isAvailable = screenWidth >= mod.minWidth;
 
               return (
@@ -83,6 +94,7 @@ const Dashboard = () => {
                     {mod.title}
                   </h3>
 
+                  {/* Conditional: Show "Start/Review" button OR "Unavailable" message */}
                   <div className="w-full">
                     {isAvailable ? (
                       <Link 
@@ -100,6 +112,7 @@ const Dashboard = () => {
                           fontSize: '1.2rem'
                         }}
                       >
+                        {/* If complete, let htem Review. If not, let htem Start. */}
                         {mod.isComplete ? "Review" : "Start"}
                       </Link>
                     ) : (
@@ -109,6 +122,7 @@ const Dashboard = () => {
                       </div>
                     )}
 
+                    {/* Progress Indicator: Changes color based on completion status */}
                     <p style={{ 
                       marginTop: '15px', 
                       fontSize: '1rem', 
@@ -125,7 +139,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Physical Spacer to prevent footer overlap as discussed */}
+        {/* Manual spacer at the bottom of the page*/}
         <div style={{ height: '100px' }}></div>
       </div>
     </div>

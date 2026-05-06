@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Search = () => {
+  // hasRead: A boolean (true/false) to track if the "Finish" button was clicked
   const [hasRead, setHasRead] = useState(false);
 
+  // function to save progress to the browser's memory (localStorage)
   const completeModule = () => {
     setHasRead(true);
     localStorage.setItem('searchComplete', 'true');
   };
 
+  // isZoomed: Tracks if the tab image is currently enlarged (lightbox mode)
   const [isZoomed, setIsZoomed] = useState(false);
   
+  // toggleZoom: Flips isZoomed betwen true and false to open/close the lightbox
   const toggleZoom = () => setIsZoomed(!isZoomed);
   
 
@@ -28,7 +32,7 @@ const Search = () => {
           </Link>
         </div>
 
-        {/* Introduction (Clean Style) */}
+        {/* Introduction */}
         <div style={{ marginBottom: '50px' }}>
           <p style={{ fontSize: '1.6rem', lineHeight: '1.5', color: 'black', fontWeight: '700' }}>
             Searching is how you find specific information on the internet without knowing the exact website address.
@@ -46,6 +50,7 @@ const Search = () => {
           <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             To start, you look for a large white box, usually in the middle of the page. This is where you type your "Keywords."
           </p>
+          {/* Clicking this div triggers the toggleZoom function */}
           <div 
             onClick={toggleZoom}
             style={{ 
@@ -69,7 +74,7 @@ const Search = () => {
               (Tap image to see it bigger)
             </p>
           </div>
-          {/* Full Screen Overlay (Lightbox) */}
+          {/* Full Screen Overlay (Lightbox): Only appears if isZoomed is true */}
           {isZoomed && (
             <div 
               onClick={toggleZoom}
@@ -119,6 +124,7 @@ const Search = () => {
           <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             You don't need to type perfect sentences. Just type the most important words.
           </p>
+          {/* Grid: 1 column on mobile, 2 columns on medium screens and larger */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div style={{ border: '2px solid black', padding: '20px', backgroundColor: 'white' }}>
               <p className="text-red-600 font-bold">Too Much Information:</p>
