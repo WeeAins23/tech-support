@@ -45,4 +45,4 @@ const Terms = () => {
   );
 };
 
-export default Terms;
+export { Terms };

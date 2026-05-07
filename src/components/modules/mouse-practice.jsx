@@ -152,4 +152,4 @@ const MousePractice = () => {
   );
 };
 
-export default MousePractice;
+export { MousePractice };

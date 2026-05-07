@@ -230,4 +230,4 @@ const KeyboardBasics = () => {
   );
 };
 
-export default KeyboardBasics;
+export { KeyboardBasics };

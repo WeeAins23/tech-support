@@ -25,16 +25,3 @@ app.get('/api/user/:username', (req, res) => {
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });
-
-useEffect(() => {
-    fetch('http://localhost:5000/api/user/${username}')
-        .then(res => res.json())
-        .then(data => {
-            if (data.length > 0) {
-                // Assuming your 'progress' field is a JSON string in MySQL
-                const userProgress = JSON.parse(data[0].progress);
-                setProgress(userProgress);
-            }
-        })
-        .catch(err => console.error('Database connection error:', err));
-}, [username]);

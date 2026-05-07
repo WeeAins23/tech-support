@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Header = (props) => {
+const Header = (props) => {
 // props.data contains the 'title', 'paragraph', and 'image' that this header will display
   return (
     <header id="header">
@@ -38,3 +38,4 @@ export const Header = (props) => {
     </header>
   );
 };
+export { Header };

@@ -180,4 +180,4 @@ const Browser = () => {
   );
 };
 
-export default Browser;
+export { Browser };

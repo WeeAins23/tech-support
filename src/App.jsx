@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 // Importing global components (Header, Footer, Nav)
 import { Navigation } from "./components/navigation";
-import { Header } from "./components/header";
+import  { Header }  from "./components/header";
 import { Footer } from "./components/footer";
 // Importing page components (Login, Register, FAQs, Privacy Policy, Terms of Use, Dashboard, Modules)
 import { Login } from "./components/login";
 import { Register } from "./components/register";
-import FAQ from "./components/faqs";
-import PrivacyPolicy from "./components/privacy";
-import Terms from "./components/terms";
-import Dashboard from "./components/dashboard";
-import MousePractice from "./components/modules/mouse-practice";
-import KeyboardBasics from "./components/modules/keyboard-basics";
-import Browser from "./components/modules/browser";
-import Search from "./components/modules/search";
-import Email from "./components/modules/email";
+import { FAQ } from "./components/faqs";
+import { PrivacyPolicy } from "./components/privacy";
+import { Terms } from "./components/terms";
+import { Dashboard } from "./components/dashboard";
+import { MousePractice } from "./components/modules/mouse-practice";
+import { KeyboardBasics } from "./components/modules/keyboard-basics";
+import { Browser } from "./components/modules/browser";
+import { Search } from "./components/modules/search";
+import { Email } from "./components/modules/email";
 // Importing JSON data for the landing page
 import JsonData from "./data/data.json";
 // Import SmoothScroll for smooth scrolling behavior when clicking anchor links
@@ -35,6 +35,20 @@ const App = () => {
     // When the app first loads, fill the state with the info from the JSON file
     setLandingPageData(JsonData);
   }, []);
+
+// useEffect(() => {
+//       // Use backticks `` for the template literal so ${username} works!
+//       fetch(`http://localhost:5000/api/user/${username}`)
+//           .then(res => res.json())
+//           .then(data => {
+//               if (data && data.length > 0) {
+//                   const userProgress = JSON.parse(data[0].progress);
+//                   setProgress(userProgress);
+//               }
+//           })
+//           .catch(err => console.error('Database connection error:', err));
+//   }, [username]);
+
 
   return (
     <Router>
