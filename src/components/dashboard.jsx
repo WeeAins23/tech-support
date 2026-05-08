@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+
 const Dashboard = () => {
-  const username = "User"; 
+  const [displayName, setDisplayName] = useState("User");
   // screenWidth: Tracks the current width of the browser window for responsive design
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -25,6 +26,39 @@ const Dashboard = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const userId = localStorage.getItem('userId'); // Retrieve the ID saved during login
+
+useEffect(() => {
+  if (!userId) return; // Don't fetch if we don't have a user ID
+
+  fetch(`http://localhost:5000/api/user/${userId}`)
+    .then(res => res.json())
+    .then(data => {
+
+      if (data.name) {
+        setDisplayName(data.name); // Set the display name from the database
+      }
+
+      // Update the Progress
+      if (data.progress) {
+      const parsedProgress = JSON.parse(data.progress);
+      setProgress(parsedProgress);
+    }
+    })
+    .catch(err => console.error("Error fetching user data:", err));
+}, [userId]);
+
+  useEffect(() => {
+  // Assuming you store the logged-in user's ID in state or context
+  fetch(`http://localhost:5000/api/user/${userId}`)
+    .then(res => res.json())
+    .then(data => {
+      // MySQL returns a string, we turn it back into a JS Object
+      const parsedProgress = JSON.parse(data.progress);
+      setProgress(parsedProgress);
+    });
+}, [userId]);
+
   // Module Data
   // title: Display name
   // path: Where the Link takes the user
@@ -44,7 +78,7 @@ const Dashboard = () => {
         
         {/* Welcome Header */}
         <h1 style={{ color: 'black', textTransform: 'uppercase', textAlign: 'center', marginBottom: '40px', fontSize: '2.5rem', fontWeight: '900' }}>
-          Welcome, {username}!
+          Welcome, {displayName}!
         </h1>
 
         {/* Main Modules Container - Visualized in Tablet User Dashboard wireframe */}

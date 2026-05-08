@@ -1,8 +1,6 @@
 import React from "react";
 
 const FAQ = () => {
-    // FAQs: an array of objects
-    // Each object represents one question-and-answer pair
     const faqs = [
         {
             question: "Is this safe to use?",
@@ -31,27 +29,45 @@ const FAQ = () => {
     ];
 
     return (
-        <div id="faqs" className="w-full min-h-screen bg-white font-sans">
-            <div className="container mx-auto px-10 py-12">
-                <h1 
-                style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px', fontSize: '5.5rem', fontWeight: '900' }}
-                className="text-5xl font-extrabold mb-10 pb-3 uppercase">Frequently Asked Questions</h1>
-                {/* space-y-8: A Tailwind class that adds consistent vertical gaps between each object */}
-                <div className="space-y-8">
-                    {/* The Map function: it takes each 'item' from the 'faqs' array and returns JSX */}
+        <div className="relative w-full bg-white px-6 pt-10 pb-8 mt-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10">
+            <div className="mx-auto px-5">
+                <div className="flex flex-col items-center">
+                    <h1 className="mt-3 text-lg text-neutral-500 md:text-xl">
+                        Frequently Asked Questions
+                    </h1>
+                </div>
+                <div className="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
                     {faqs.map((item, index) => (
-                        // FAQ Card: Includes one question and one answer
-                        <div key={index} className="border-2 border-black p-6 rounded-lg bg--gray-50">
-                            {/* The Question: Styled in bold to stand out */}
-                            <h2 className="text-base font-bold text-black mb-4">{item.question}</h2>
-                            {/* The Answer: Styled with 'leading-relaxed' to make it easier to read */}
-                            <p className="text-xl text-gray-800 leading-relaxed">{item.answer}</p>
+                        <div key={index} className="py-5">
+                            <details className="group">
+                                <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
+                                    <span>{item.question}</span>
+                                    <span className="transition group-open:rotate-180">
+                                        <svg 
+                                            fill="none" 
+                                            height="24" 
+                                            shapeRendering="geometricPrecision"
+                                            stroke="currentColor" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round"
+                                            strokeWidth="1.5" 
+                                            viewBox="0 0 24 24" 
+                                            width="24"
+                                        >
+                                            <path d="M6 9l6 6 6-6"></path>
+                                        </svg>
+                                    </span>
+                                </summary>
+                                <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
+                                    {item.answer}
+                                </p>
+                            </details>
                         </div>
                     ))}
                 </div>
-                {/* Manual spacer at the bottom of the page*/}
-                <div style={{ height: '100px' }}></div>
-            </div>  
+            </div>
+            {/* Manual spacer at the bottom */}
+            <div className="h-[100px]"></div>
         </div>
     );
 };

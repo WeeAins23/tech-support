@@ -34,6 +34,8 @@ const Header = (props) => {
             className="img-responsive"
           />
         </div>
+        {/* Manual spacer at the bottom of the page*/}
+        <div style={{ height: '100px' }}></div>
       </div>
     </header>
   );
