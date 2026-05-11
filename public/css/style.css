@@ -134,7 +134,7 @@ hr {
 }
 
 /* Login Button - Navigation */
-.login-btn {
+.login-btn, .logout-btn {
     background: linear-gradient(135deg, #56a1ff 0%, #2e73ea 100%);
     border: none;
     border-radius: 50px;
@@ -427,7 +427,7 @@ header .hero-image {
   width: 100%;
   padding: 12px;
   border: 1px solid black;
-  font-size: 1rem;
+  font-size: 2rem; 
   outline: none;
 }
 

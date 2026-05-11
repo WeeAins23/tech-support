@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
 
     try {
       const response = await fetch('http://localhost:5000/api/login', {
@@ -23,13 +26,13 @@ export const Login = () => {
         localStorage.setItem('userId', userData.id);
         localStorage.setItem('username', userData.username);
 
-        alert("Login Successful!");
-        navigate("/dashboard"); // This is the magic line!
+        navigate("/dashboard"); 
       } else {
-        alert("Invalid Username or Password");
+        setError("Invalid Username or Password");
       }
-    } catch (error) {
-      console.error("Login error:", error);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Could not connect to the server.");
     }
   };
 
@@ -45,8 +48,29 @@ export const Login = () => {
 
           <div className="form-group">
             <label>Password:</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="login-input" />
+            <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} className="login-input" />
+            <button 
+              type="button" 
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                fontSize: '1.5rem',
+                marginTop: '5px',
+                background: 'none',
+                border: 'none',
+                color: '#2e73ea',
+                cursor: 'pointer',
+                textDecoration: 'underline'
+              }}
+            >
+              {showPassword ? "Hide Password" : "Show Password"}
+            </button>
           </div>
+
+          {error && (
+            <p style={{ color: '#ff4d4d', fontSize: '14px', marginBottom: '15px', fontWeight: 'bold' }}>
+              {error}
+            </p>
+          )}
 
           <button type="submit" className="login-submit-btn">
             Login
