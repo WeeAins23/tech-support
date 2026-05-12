@@ -75,10 +75,35 @@ app.get('/api/user/:id', (req, res) => {
   db.query(sql, [userId], (err, result) => {
     if (err) return res.status(500).send(err);
     if (result.length > 0) {
-      res.status(200).send(result[0]); // Sends { name: 'Ainsley Rae', progress: '...' }
+      let userData = result[0];
+
+      try {
+        if (typeof userData.progress === 'string') {
+          userData.progress = JSON.parse(userData.progress);
+        }
+      }
+      catch (e) {
+        console.error("Error parsing progress JSON:", e);
+        userData.progress = {};
+      }
+      res.status(200).send(userData);
     } else {
       res.status(404).send("User not found");
     }
+  });
+});
+
+app.post('/api/update-progress', (req, res) => {
+  const { userId, progress } = req.body;
+
+  const progressString = JSON.stringify(progress);
+
+  const sql = "UPDATE users SET progress = ? WHERE id = ?";
+
+  // We must stringify the object back into JSON for MySQL
+  db.query(sql, [JSON.stringify(progress), userId], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.status(200).send({ message: "Progress updated successfully" });
   });
 });
 

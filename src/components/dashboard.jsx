@@ -1,106 +1,111 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [displayName, setDisplayName] = useState("User");
-  // screenWidth: Tracks the current width of the browser window for responsive design
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  // progress: An object that checks localStorage for every module
-  // It converts the string 'true' to a real Boolean (true/false)
   const [progress, setProgress] = useState({
-    mouse: localStorage.getItem('mouseComplete') === 'true',
-    keyboard: localStorage.getItem('keyboardComplete') === 'true',
-    browser: localStorage.getItem('browserComplete') === 'true',
-    search: localStorage.getItem('searchComplete') === 'true',
-    email: localStorage.getItem('emailComplete') === 'true',
+    mouse: false,
+    keyboard: false,
+    browser: false,
+    search: false,
+    email: false,
   });
 
-  // Handle window resizing for responsive "Availability" checks
+  // Handle window resizing
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
-    // Listen for the browser window changing size
     window.addEventListener("resize", handleResize);
-    // Cleanup: Remove the listener when leaving the dashboard
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const userId = localStorage.getItem('userId'); // Retrieve the ID saved during login
-
-useEffect(() => {
-  if (!userId) return; // Don't fetch if we don't have a user ID
-
-  fetch(`http://localhost:5000/api/user/${userId}`)
-    .then(res => res.json())
-    .then(data => {
-
-      if (data.name) {
-        setDisplayName(data.name); // Set the display name from the database
-      }
-
-      // Update the Progress
-      if (data.progress) {
-      const parsedProgress = JSON.parse(data.progress);
-      setProgress(parsedProgress);
-    }
-    })
-    .catch(err => console.error("Error fetching user data:", err));
-}, [userId]);
-
+  // Security Check and Data Sync
   useEffect(() => {
-  // Assuming you store the logged-in user's ID in state or context
-  fetch(`http://localhost:5000/api/user/${userId}`)
-    .then(res => res.json())
-    .then(data => {
-      // MySQL returns a string, we turn it back into a JS Object
-      const parsedProgress = JSON.parse(data.progress);
-      setProgress(parsedProgress);
-    });
-}, [userId]);
+    const userId = sessionStorage.getItem('userId');
+    
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+
+    fetch(`http://localhost:5000/api/user/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.name) setDisplayName(data.name);
+
+        if (data.progress) {
+          let parsed = typeof data.progress === 'string' ? JSON.parse(data.progress) : data.progress;
+          
+          // We set the raw parsed data to state so we can access .complete and .bestTime
+          setProgress(parsed);
+        }
+      })
+      .catch((err) => console.error("Dashboard Sync Error:", err));
+  }, [navigate]);
+
+  // Helper function to check completion status (handles old boolean and new object formats)
+  const checkComplete = (modState) => {
+    if (typeof modState === 'object' && modState !== null) {
+      return modState.complete;
+    }
+    return modState === true;
+  };
 
   // Module Data
-  // title: Display name
-  // path: Where the Link takes the user
-  // isComplete: Boolean to show progress status
-  // minWidth: The minimum screen size (in pixels) required to play
   const modules = [
-    { title: "Mouse Practice", path: "/mouse-practice", isComplete: progress.mouse, minWidth: 1024 }, 
-    { title: "Keyboard Basics", path: "/keyboard-basics", isComplete: progress.keyboard, minWidth: 768 }, 
-    { title: "What is a browser?", path: "/browser", isComplete: progress.browser, minWidth: 0 },
-    { title: "How to search", path: "/search", isComplete: progress.search, minWidth: 0 },
-    { title: "Email 101", path: "/email", isComplete: progress.email, minWidth: 0 },
+    { 
+      title: "Mouse Practice",
+      path: "/mouse-practice",
+      isComplete: checkComplete(progress.mouse),
+      bestTime: progress.mouse?.bestTime || null,
+      minWidth: 1024
+    }, 
+    { 
+      title: "Keyboard Basics", 
+      path: "/keyboard-basics", 
+      isComplete: checkComplete(progress.keyboard),
+      bestTime: progress.keyboard?.bestTime || null,
+      minWidth: 768
+    }, 
+    {
+      title: "What is a browser?",
+      path: "/browser",
+      isComplete: checkComplete(progress.browser),
+      lastRead: progress.browser?.lastRead || null,
+      minWidth: 0
+    },
+    {
+      title: "How to search",
+      path: "/search",
+      isComplete: checkComplete(progress.search),
+      lastRead: progress.search?.lastRead || null,
+      minWidth: 0
+    },
+    { 
+      title: "Email 101",
+      path: "/email", 
+      isComplete: checkComplete(progress.email),
+      lastRead: progress.email?.lastRead || null,
+      minWidth: 0
+    },
   ];
 
   return (
     <div id="dashboard" className="w-full min-h-screen bg-white font-sans">
       <div className="container mx-auto px-10 py-12 pb-20">
-        
-        {/* Welcome Header */}
         <h1 style={{ color: 'black', textTransform: 'uppercase', textAlign: 'center', marginBottom: '40px', fontSize: '2.5rem', fontWeight: '900' }}>
           Welcome, {displayName}!
         </h1>
 
-        {/* Main Modules Container - Visualized in Tablet User Dashboard wireframe */}
         <div style={{ border: '4px solid black', padding: '20px', backgroundColor: 'white' }}>
           <h2 style={{ color: 'black', textTransform: 'uppercase', textAlign: 'center', marginBottom: '30px', fontSize: '3rem', fontWeight: '800' }}>
             Modules
           </h2>
 
-          {/* Grid Layout: Handles the spacing and wrapping of the cards */}
-          <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row lg:flex-wrap lg:justify-center gap-8" style={{ 
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '30px'
-          }}
-          >
-            {/* Map Function: Loops through each module and creates a Card */}
+          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: '30px' }}>
             {modules.map((mod, index) => {
-              // Logic Check: Is the user's screen wide enough for this specific module?
-            const isAvailable = screenWidth >= mod.minWidth;
-
+              const isAvailable = screenWidth >= mod.minWidth;
               return (
                 <div 
                   key={index} 
@@ -111,25 +116,36 @@ useEffect(() => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    minHeight: '280px', 
+                    minHeight: '320px', 
                     width: screenWidth >= 768 ? 'calc(33% - 20px)' : '100%',
                     minWidth: '300px',
                     opacity: isAvailable ? 1 : 0.7 
                   }}
                 >
-                  <h3 style={{ 
-                    color: 'black',
-                    textTransform: 'uppercase',
-                    marginBottom: '20px',
-                    fontSize: '2.5rem',
-                    fontWeight: '900',
-                    textAlign: 'center'
-                    }}>
+                  <h3 style={{ color: 'black', textTransform: 'uppercase', marginBottom: '20px', fontSize: '2.5rem', fontWeight: '900', textAlign: 'center' }}>
                     {mod.title}
                   </h3>
 
-                  {/* Conditional: Show "Start/Review" button OR "Unavailable" message */}
-                  <div className="w-full">
+                  <div className="w-full text-center">
+                    {/* Best time or last read displayed */}
+                    {mod.isComplete && (
+                      <div style={{ marginBottom: '15px' }}>
+                        {/* If it has a Best Time (Games) */}
+                        {mod.bestTime ? (
+                          <span style={{ fontSize: '1.5rem', fontWeight: '800', color: '#00857a', border: '2px solid #00857a', padding: '4px 8px' }}>
+                            ⏱ BEST: {mod.bestTime}s
+                          </span>
+                        ) : mod.lastRead ? (
+                          /* If it has a Last Read date (Lessons) */
+                          <span style={{ fontSize: '1.5rem', fontWeight: '800', color: '#00857a', border: '2px solid #00857a', padding: '4px 8px' }}>
+                            📖 LAST READ: {mod.lastRead}
+                          </span>
+                        ) : (
+                          <span style={{ fontSize: '0.9rem', color: '#666' }}>No record yet</span>
+                        )}
+                      </div>
+                    )}
+
                     {isAvailable ? (
                       <Link 
                         to={mod.path} 
@@ -137,26 +153,22 @@ useEffect(() => {
                           backgroundColor: '#26d9ca', 
                           color: 'black', 
                           textDecoration: 'none', 
-                          display: 'block', 
-                          textAlign: 'center', 
                           padding: '12px 0', 
                           fontWeight: '900', 
                           border: '3px solid black', 
                           textTransform: 'uppercase',
-                          fontSize: '1.2rem'
+                          fontSize: '1.2rem',
+                          display: 'block'
                         }}
                       >
-                        {/* If complete, let htem Review. If not, let htem Start. */}
                         {mod.isComplete ? "Review" : "Start"}
                       </Link>
                     ) : (
-                      /* Unavailable State for Mobile/Tablet */
                       <div style={{ backgroundColor: '#d1d5db', color: '#4b5563', textAlign: 'center', padding: '12px 0', fontWeight: 'bold', border: '3px dashed #9ca3af', textTransform: 'uppercase', fontSize: '0.9rem' }}>
                         Unavailable on device
                       </div>
                     )}
 
-                    {/* Progress Indicator: Changes color based on completion status */}
                     <p style={{ 
                       marginTop: '15px', 
                       fontSize: '1rem', 
@@ -172,9 +184,6 @@ useEffect(() => {
             })}
           </div>
         </div>
-
-        {/* Manual spacer at the bottom of the page*/}
-        <div style={{ height: '100px' }}></div>
       </div>
     </div>
   );

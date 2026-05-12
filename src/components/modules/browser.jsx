@@ -2,20 +2,57 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Browser = () => {
-  // hasRead: A boolean (true/false) to track if the "Finish" button was clicked
-  const [hasRead, setHasRead] = useState(false);
-
-  // function to save progress to the browser's memory (localStorage)
-  const completeModule = () => {
-    setHasRead(true);
-    localStorage.setItem('browserComplete', 'true');
-  };
-
-  // isZoomed: Tracks if the tab image is currently enlarged (lightbox mode)
+  // isSaved: Tracks if the database has been updated successfully
+  const [isSaved, setIsSaved] = useState(false);
+  
+  // isZoomed: Tracks if the tab image is currently enlarged
   const [isZoomed, setIsZoomed] = useState(false);
   
-  // toggleZoom: Flips isZoomed betwen true and false to open/close the lightbox
+  // toggleZoom: Opens/closes the lightbox
   const toggleZoom = () => setIsZoomed(!isZoomed);
+
+  // function to save progress to the database
+  const completeModule = async () => {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
+
+    // Get current date in a readable format (e.g., "12 May 2026")
+    const now = new Date();
+    const dateString = now.toLocaleDateString('en-GB', {
+      day: 'numeric', 
+      month: 'long',
+      year: 'numeric' 
+    });
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/user/${userId}`);
+      const data = await res.json();
+      
+      let currentProgress = typeof data.progress === 'string' 
+        ? JSON.parse(data.progress) 
+        : data.progress;
+
+      const updatedProgress = { 
+        ...currentProgress, 
+        browser: { complete: true, lastRead: dateString } 
+      };
+
+      await fetch('http://localhost:5000/api/update-progress', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, progress: updatedProgress })
+      });
+
+      // Update local session so Dashboard sees it immediately
+      sessionStorage.setItem('userProgress', JSON.stringify(updatedProgress));
+      
+      // Flip the state to show the success UI instead of an alert
+      setIsSaved(true);
+
+    } catch (err) {
+      console.error("Error saving reading progress:", err);
+    }
+  };
 
   return (
     <div id="browser-module" className="w-full min-h-screen bg-white font-sans pb-20">
@@ -50,7 +87,6 @@ const Browser = () => {
             The Address Bar is the long white box at the top of your screen. This is where you type the name of the place you want to go.
           </p>
           <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#fdfdfd' }}>
-            
             <p className="text-sm italic text-gray-500 mt-2">Example: Typing "www.google.com" into the bar.</p>
           </div>
         </section>
@@ -64,7 +100,6 @@ const Browser = () => {
             Browsers have arrows that let you move between pages you've already visited.
           </p>
 
-          {/* Stacks vertically on mobile, side-by-side on desktop */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white' }}>
               <strong style={{ fontSize: '1.4rem' }}>← Back Button</strong>
@@ -74,9 +109,6 @@ const Browser = () => {
               <strong style={{ fontSize: '1.4rem' }}>↻ Refresh Button</strong>
               <p>Reloads the page if it gets stuck or doesn't look right.</p>
             </div>
-          </div>
-          <div style={{ marginTop: '20px', textAlign: 'center' }}>
-             
           </div>
         </section>
 
@@ -88,31 +120,25 @@ const Browser = () => {
           <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
             Tabs allow you to keep more than one website open at the same time. Think of them like bookmarks in a book.
           </p>
-          {/* Clicking this div triggers the toggleZoom function */}
           <div 
             onClick={toggleZoom}
             style={{ 
               padding: '10px', 
               textAlign: 'center', 
               backgroundColor: '#fdfdfd',
-              cursor: 'zoom-in' // Changes cursor to a magnifying glass
+              cursor: 'zoom-in'
             }}
           >
-            
             <img 
               src="/img/browser-tabs.png" 
               alt="An example image of several browser tabs open at once" 
-              style={{ 
-                maxWidth: '100%',
-                height: 'auto',
-                display: 'block',
-                margin: '0 auto' }} 
+              style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '0 auto' }} 
             />
             <p style={{ fontSize: '0.9rem', marginTop: '10px', color: '#666' }}>
               (Tap image to see it bigger)
             </p>
           </div>
-          {/* Full Screen Overlay (Lightbox): Only appears if isZoomed is true */}
+
           {isZoomed && (
             <div 
               onClick={toggleZoom}
@@ -122,7 +148,7 @@ const Browser = () => {
                 left: 0,
                 width: '100vw',
                 height: '100vh',
-                backgroundColor: 'rgba(0,0,0,0.9)', // 90% black transparency
+                backgroundColor: 'rgba(0,0,0,0.9)',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -154,28 +180,52 @@ const Browser = () => {
           )}
         </section>
 
-        {/* Completion Area */}
-        <div style={{ textAlign: 'center', marginTop: '60px' }}>
-          {!hasRead ? (
+        {/* NEW DYNAMIC COMPLETION AREA */}
+        <div style={{ textAlign: 'center', marginTop: '60px', padding: '40px', borderTop: '4px solid black' }}>
+          {!isSaved ? (
             <button 
               onClick={completeModule}
-              style={{ backgroundColor: '#26d9ca', color: 'black', padding: '25px 50px', fontSize: '1.8rem', fontWeight: '900', border: '4px solid black', cursor: 'pointer' }}
+              style={{ 
+                backgroundColor: '#26d9ca', 
+                color: 'black', 
+                padding: '25px 50px', 
+                fontSize: '1.8rem', 
+                fontWeight: '900', 
+                border: '4px solid black', 
+                cursor: 'pointer',
+                textTransform: 'uppercase'
+              }}
             >
-              I HAVE FINISHED READING
+              I Have Finished Reading
             </button>
           ) : (
-            // If they HAVE read, show the "Module Complete" success box
             <div style={{ border: '4px solid #00857a', padding: '30px', backgroundColor: '#e0fff4' }}>
-              <h3 className="text-2xl font-black mb-4 uppercase">Module Complete!</h3>
-              <Link to="/dashboard" style={{ color: 'black', fontWeight: 'bold', fontSize: '1.2rem' }}>
-                Go back to see your progress update →
+              <h3 style={{ fontSize: '2rem', fontWeight: '900', color: '#00857a', marginBottom: '15px', textTransform: 'uppercase' }}>
+                Progress Saved!
+              </h3>
+              <p style={{ fontSize: '1.2rem', marginBottom: '20px', fontWeight: 'bold' }}>
+                You have successfully completed this lesson.
+              </p>
+              <Link 
+                to="/dashboard" 
+                style={{ 
+                  backgroundColor: 'black', 
+                  color: '#26d9ca', 
+                  padding: '20px 40px', 
+                  fontSize: '1.5rem', 
+                  fontWeight: 'bold', 
+                  textDecoration: 'none', 
+                  border: '3px solid black', 
+                  display: 'inline-block' 
+                }}
+              >
+                RETURN TO DASHBOARD
               </Link>
             </div>
           )}
         </div>
       </div>
-      {/* Manual spacer at the bottom of the page*/}
-        <div style={{ height: '100px', width: '100%' }}></div>
+      <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );
 };

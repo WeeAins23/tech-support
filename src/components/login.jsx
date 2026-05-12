@@ -23,8 +23,8 @@ export const Login = () => {
         const userData = await response.json();
         
         // IMPORTANT: Save the user ID so the Dashboard knows who you are
-        localStorage.setItem('userId', userData.id);
-        localStorage.setItem('username', userData.username);
+        sessionStorage.setItem('userId', userData.id);
+        sessionStorage.setItem('username', userData.username);
 
         navigate("/dashboard"); 
       } else {

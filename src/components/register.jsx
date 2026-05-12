@@ -26,8 +26,8 @@ export const Register = () => {
 
         if (response.ok) {
           const data = await response.json();
-          localStorage.setItem('userId', data.userId);
-          localStorage.setItem('userName', name); 
+          sessionStorage.setItem('userId', data.userId);
+          sessionStorage.setItem('userName', name); 
           navigate("/dashboard"); 
         } else {
           const errorData = await response.text();

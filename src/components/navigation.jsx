@@ -6,14 +6,14 @@ export const Navigation = (props) => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Check if the user is logged in by looking for user data in localStorage
+  // Check if the user is logged in by looking for user data in sessionStorage
   useEffect(() => {
-    const user = localStorage.getItem("userId");
+    const user = sessionStorage.getItem("userId");
     setIsLoggedIn(!!user); // Set to true if user exists, false otherwise
   }, [location]);
 
   const handleLogout = () => {
-    localStorage.clear(); // Removes userID, name, and progress from localStorage
+    sessionStorage.clear(); // Removes userID, name, and progress from sessionStorage
     setIsLoggedIn(false); // Update state to reflect logout
     navigate("/"); // Redirect to homepage after logout
   };
