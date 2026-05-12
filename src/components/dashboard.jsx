@@ -184,6 +184,7 @@ const Dashboard = () => {
             })}
           </div>
         </div>
+        <div style={{ height: '100px', width: '100%' }}></div>
       </div>
     </div>
   );

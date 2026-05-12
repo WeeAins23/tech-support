@@ -560,3 +560,62 @@ header .hero-image {
     text-decoration: none !important;
   }
 }
+
+/* --- DEFAULT: DESKTOP & TABLET VIEW --- */
+#menu.custom-nav {
+  min-height: 220px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+#menu .nav-container {
+  display: flex !important;
+  flex-direction: row !important;
+  /* This pushes the logo to the left and the button-group to the right */
+  justify-content: space-between !important; 
+  align-items: center !important;
+  width: 100% !important;
+  padding: 20px 60px !important;
+  max-width: none !important; /* Ensures it hits the edges of the screen */
+}
+
+#menu .nav-logo {
+  height: 250px !important; 
+  width: auto !important;
+}
+
+#menu .nav-button-group {
+  display: flex !important;
+  flex-direction: column !important; /* Stacked as requested */
+  /* Pushes the actual text/button edges to the far right wall */
+  align-items: flex-end !important; 
+  gap: 15px !important;
+  margin-left: auto !important; /* Forceful push to the right */
+}
+
+/* --- MOBILE VIEW --- */
+@media (max-width: 767px) {
+  #menu.custom-nav {
+    min-height: auto !important;
+    padding: 20px 0 !important;
+  }
+
+  #menu .nav-container {
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 25px !important;
+  }
+
+  #menu .nav-logo {
+    height: 300px !important;
+  }
+
+  #menu .nav-button-group {
+    flex-direction: row !important; /* Side-by-side on mobile */
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-left: 0 !important; /* Reset the push for mobile centering */
+  }
+}
