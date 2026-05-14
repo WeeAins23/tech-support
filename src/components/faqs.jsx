@@ -43,7 +43,7 @@ const FAQ = () => {
                                 <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
                                     <span>{item.question}</span>
                                     <span className="transition group-open:rotate-180">
-                                        <svg 
+                                        <svg
                                             fill="none" 
                                             height="24" 
                                             shapeRendering="geometricPrecision"

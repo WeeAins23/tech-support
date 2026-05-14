@@ -49,25 +49,16 @@ export const Login = () => {
           <div className="form-group">
             <label>Password:</label>
             <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} className="login-input" />
-            <button 
+            <button className="show-password"
               type="button" 
               onClick={() => setShowPassword(!showPassword)}
-              style={{
-                fontSize: '1.5rem',
-                marginTop: '5px',
-                background: 'none',
-                border: 'none',
-                color: '#2e73ea',
-                cursor: 'pointer',
-                textDecoration: 'underline'
-              }}
             >
               {showPassword ? "Hide Password" : "Show Password"}
             </button>
           </div>
 
           {error && (
-            <p style={{ color: '#ff4d4d', fontSize: '14px', marginBottom: '15px', fontWeight: 'bold' }}>
+            <p className="password-error">
               {error}
             </p>
           )}
@@ -77,9 +68,6 @@ export const Login = () => {
           </button>
         </form>
       </div>
-      
-      {/* Optional spacer to keep footer from touching the box directly */}
-      <div className="auth-footer-spacer"></div> 
     </div>
   );
 };

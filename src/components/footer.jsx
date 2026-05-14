@@ -16,94 +16,68 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer 
-      style={{ backgroundColor: '#26d9ca', position: 'relative' }} 
-      className="w-full py-10 px-6 font-sans text-black mt-auto"
+    <footer
+      className="w-full py-10 px-6 font-sans text-black mt-auto" 
     >
-      <div 
-        style={{ 
-          maxWidth: '1400px', // Slightly wider to give the "Center" more room
-          margin: '0 auto', 
-          display: 'flex', 
-          // If Desktop, arrange in a row. If not, stack in a column and centre everything.
-          flexDirection: isDesktop ? 'row' : 'column', 
-          alignItems: 'center', 
-          justifyContent: 'space-between',
-          gap: '30px' 
-        }}
+      <div className="footer-layout" style={{
+        // If Desktop, arrange in a row. If not, stack in a column and centre everything.
+          flexDirection: isDesktop ? 'row' : 'column',
+      }}
       >
         
         {/* Logo */}
-        <div style={{ 
+        <div className="footer-logo" style={{ 
           flex: isDesktop ? '1' : 'none', 
-          display: 'flex', 
           justifyContent: isDesktop ? 'flex-start' : 'center' 
         }}>
           <img 
+            className="footer-logo-img"
             src="/img/ts-logo.png" 
             alt="Tech Support Logo" 
-            style={{ width: isDesktop ? '180px' : '150px', height: 'auto' }} 
+            style={{ 
+              width: isDesktop ? '180px' : '150px',
+            }} 
           />
         </div>
 
         {/* Navigation Links */}
-        <nav style={{ 
-          flex: isDesktop ? '1' : 'none', 
-          display: 'flex', 
-          justifyContent: 'center',
+        <nav className="footer-nav" style={{ 
+          flex: isDesktop ? '1' : 'none',
           marginTop: isDesktop ? '40px' : '0px'
         }}>
           <ul 
-            style={{ 
-              listStyle: 'none', 
-              padding: 0, 
-              margin: 0, 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
-              gap: '12px',
-              textAlign: 'center'
-            }} 
+          className="footer-nav-list"
           >
-            <li><Link to="/faqs" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">FAQs</Link></li>
-            <li><Link to="/privacy" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">Privacy Policy</Link></li>
-            <li><Link to="/terms" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">Terms Of Use</Link></li>
-            <li><Link to="/dashboard" style={{ color: 'black', textDecoration: 'none' }} className="text-xl font-bold hover:underline">Dashboard</Link></li>
+            <li><Link to="/faqs" className="text-xl font-bold hover:underline footer-nav-link">FAQs</Link></li>
+            <li><Link to="/privacy" className="text-xl font-bold hover:underline footer-nav-link">Privacy Policy</Link></li>
+            <li><Link to="/terms" className="text-xl font-bold hover:underline footer-nav-link">Terms Of Use</Link></li>
+            <li><Link to="/dashboard" className="text-xl font-bold hover:underline footer-nav-link">Dashboard</Link></li>
           </ul>
         </nav>
 
         {/* Social Media */}
-        <div style={{ 
+        <div className="footer-socials" style={{ 
           // If on desktop, push the icons to the right. If on mobile, centre them below the other content.
           flex: isDesktop ? '1' : 'none', 
-          display: 'flex', 
-          justifyContent: isDesktop ? 'flex-end' : 'center',
-          gap: '20px'
+          justifyContent: isDesktop ? 'flex-end' : 'center'
         }}>
           {/* target="_blank" will open the link in a new tab */}
           {/* rel="noreferrer" prevents the new tab from accessing the referrer information */}
           <a href="https://facebook.com" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-facebook" style={{ fontSize: '35px', color: 'black' }}></i>
+            <i className="fa-brands fa-facebook" style={{ fontSize: '35px', color: 'black', padding: '5px' }}></i>
           </a>
           <a href="https://twitter.com" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-twitter" style={{ fontSize: '35px', color: 'black' }}></i>
+            <i className="fa-brands fa-twitter" style={{ fontSize: '35px', color: 'black', padding: '5px' }}></i>
           </a>
           <a href="https://youtube.com" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-youtube" style={{ fontSize: '35px', color: 'black' }}></i>
+            <i className="fa-brands fa-youtube" style={{ fontSize: '35px', color: 'black', padding: '5px' }}></i>
           </a>
         </div>
       </div>
 
       {/* Copyright */}
-      <div 
-        style={{ 
-          marginTop: '40px', 
-          paddingTop: '20px', 
-          borderTop: '1px solid rgba(0,0,0,0.1)', 
-          textAlign: 'center'
-        }} 
-      >
-        <p style={{ color: 'black', fontSize: '14px', fontWeight: '600', margin: '0' }}>
+      <div className="footer-copyright" >
+        <p className="copyright-content">
           &copy; {currentYear} Tech Support
         </p>
       </div>

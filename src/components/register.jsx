@@ -46,7 +46,7 @@ export const Register = () => {
         <h1>Register</h1>
         <form className="register-form" onSubmit={handleRegister} noValidate>
           {error && (
-            <p className="error-message" style={{ color: '#ff4d4d', fontWeight: 'bold', textAlign: 'center' }}>
+            <p className="error-message">
               {error}
             </p>
           )}
@@ -63,30 +63,20 @@ export const Register = () => {
             <label>Password:</label>
             <input type={showPassword ? "text" : "password"} name="password" className="register-input" value={password} onChange={(e) => setPassword(e.target.value)} required />
             <button 
+              className="show-password"
               type="button" 
               onClick={() => setShowPassword(!showPassword)}
-              style={{
-                fontSize: '1.5rem',
-                marginTop: '5px',
-                background: 'none',
-                border: 'none',
-                color: '#2e73ea',
-                cursor: 'pointer',
-                textDecoration: 'underline'
-              }}
             >
               {showPassword ? "Hide Password" : "Show Password"}
             </button>
           </div>
           <button
             type="submit" 
-            className="register-submit-btn" 
-            >
+            className="register-submit-btn" >
             Register
           </button>
         </form>
       </div>
-      <div className="auth-footer-spacer"></div>
     </div>
   );
 };
