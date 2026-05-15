@@ -799,3 +799,167 @@ footer{
   font-weight: bold;
   text-align: center;
 }
+
+/* BROWSER MODULE */
+
+.browser-header{
+  border-bottom: 4px solid #26d9ca;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+}
+
+.browser-h1{
+  color: black;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.dashboard-link{
+  color: #26d9ca;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.browser-wrapper{
+  margin-bottom: 50px;
+}
+
+.module-intro-text-head{
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: black;
+  font-weight: 700;
+}
+
+.module-intro-text-body{
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-top: 20px;
+  color: #333;
+}
+
+.module-section{
+  border: 3px solid black;
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+.module-section-header{
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.module-section-body{
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+}
+
+.module-inner-section{
+  border: 2px solid black;
+  padding: 15px;
+  background-color: 'white;
+}
+
+.module-image{
+  padding: 10px;
+  text-align: center;
+  background-color: #fdfdfd;
+  cursor: zoom-in;
+}
+
+.module-image img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.image-text{
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: black;
+}
+
+.image-zoom{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  cursor: zoom-out;
+}
+
+.image-zoom img{
+  max-width: 95%;
+  max-height: 95%;
+  border: 2px solid white;
+}
+
+.close-button{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.finished-module{
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  border-top: 4px solid black;
+}
+
+.finished-module-button{
+  background-color: #26d9ca;
+  color: black;
+  padding: 25px 50px;
+  font-size: 1.8rem;
+  font-weight: 900;
+  border: 4px solid black;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.progress-box{
+  border: 4px solid #00857a;
+  padding: 30px;
+  background-color: #e0fff4;
+}
+
+.progress-header{
+  font-size: 2rem;
+  font-weight: 900;
+  color: #00857a;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.progress-text{
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.dashboard-link-bottom{
+  background-color: black; 
+  color: #26d9ca;
+  padding: 20px 40px;
+  font-size: 1.5rem; 
+  font-weight: bold;
+  text-decoration: none;
+  border: 3px solid black;
+  display: inline-block; 
+}

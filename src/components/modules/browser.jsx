@@ -59,120 +59,89 @@ const Browser = () => {
       <div className="container mx-auto px-10 py-12">
         
         {/* Header */}
-        <div style={{ borderBottom: '4px solid #26d9ca', marginBottom: '40px', paddingBottom: '20px' }}>
-          <h1 style={{ color: 'black', textTransform: 'uppercase', fontSize: '2.5rem', fontWeight: '900' }}>
+        <div className="browser-header">
+          <h1 className="browser-h1" >
             What is a Browser?
           </h1>
-          <Link to="/dashboard" style={{ color: '#26d9ca', fontWeight: 'bold', textDecoration: 'none' }}>
+          <Link to="/dashboard" className="dashboard-link">
             ← Back to Dashboard
           </Link>
         </div>
 
         {/* Introduction Section */}
-        <div style={{ marginBottom: '50px' }}>
-          <p style={{ fontSize: '1.6rem', lineHeight: '1.5', color: 'black', fontWeight: '700' }}>
+        <div className="browser-wrapper" >
+          <p className="module-intro-text-head">
             A Web Browser is a piece of software (an "app") that lets you visit websites. 
           </p>
-          <p style={{ fontSize: '1.3rem', lineHeight: '1.6', marginTop: '20px', color: '#333' }}>
+          <p className="module-intro-text-body">
             Think of the Internet as a giant library full of books. The Browser is like the front door of that library. Without a browser, you wouldn't be able to "open" the websites you want to see, read the news, or check your email.
           </p>
         </div>
 
         {/* Section 1: The Address Bar */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             The Address Bar
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             The Address Bar is the long white box at the top of your screen. This is where you type the name of the place you want to go.
           </p>
-          <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#fdfdfd' }}>
-            <p className="text-sm italic text-gray-500 mt-2">Example: Typing "www.google.com" into the bar.</p>
+          <div>
+            <p className="text-sm italic text-black-500 mt-2">Example: Typing "www.google.com" into the bar.</p>
           </div>
         </section>
 
         {/* Section 2: Navigation Buttons */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px', backgroundColor: '#f9fafb' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             Moving Back and Forth
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             Browsers have arrows that let you move between pages you've already visited.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white' }}>
-              <strong style={{ fontSize: '1.4rem' }}>← Back Button</strong>
+            <div className="module-inner-section">
+              <strong>← Back Button</strong>
               <p>Takes you back to the page you were looking at before.</p>
             </div>
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white' }}>
-              <strong style={{ fontSize: '1.4rem' }}>↻ Refresh Button</strong>
+            <div className="module-inner-section">
+              <strong>↻ Refresh Button</strong>
               <p>Reloads the page if it gets stuck or doesn't look right.</p>
             </div>
           </div>
         </section>
 
         {/* Section 3: Browser Tabs */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             Using Tabs
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             Tabs allow you to keep more than one website open at the same time. Think of them like bookmarks in a book.
           </p>
-          <div 
+          <div className="module-image"
             onClick={toggleZoom}
-            style={{ 
-              padding: '10px', 
-              textAlign: 'center', 
-              backgroundColor: '#fdfdfd',
-              cursor: 'zoom-in'
-            }}
           >
             <img 
               src="/img/browser-tabs.png" 
               alt="An example image of several browser tabs open at once" 
-              style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '0 auto' }} 
             />
-            <p style={{ fontSize: '0.9rem', marginTop: '10px', color: '#666' }}>
+            <p className="image-text">
               (Tap image to see it bigger)
             </p>
           </div>
 
           {isZoomed && (
             <div 
+              className="image-zoom"
               onClick={toggleZoom}
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100vw',
-                height: '100vh',
-                backgroundColor: 'rgba(0,0,0,0.9)',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                zIndex: 10000,
-                cursor: 'zoom-out'
-              }}
             >
               <img 
                 src="/img/browser-tabs.png" 
                 alt="Enlarged browser tabs view" 
-                style={{ maxWidth: '95%', maxHeight: '95%', border: '2px solid white' }} 
               />
-              <button 
-                style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  backgroundColor: 'white',
-                  border: 'none',
-                  fontSize: '2rem',
-                  padding: '10px 20px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
+              <button className="close-button"
               >
                 ✕ CLOSE
               </button>
@@ -180,44 +149,25 @@ const Browser = () => {
           )}
         </section>
 
-        {/* NEW DYNAMIC COMPLETION AREA */}
-        <div style={{ textAlign: 'center', marginTop: '60px', padding: '40px', borderTop: '4px solid black' }}>
+        <div className="finished-module">
           {!isSaved ? (
             <button 
+              className="finished-module-button"
               onClick={completeModule}
-              style={{ 
-                backgroundColor: '#26d9ca', 
-                color: 'black', 
-                padding: '25px 50px', 
-                fontSize: '1.8rem', 
-                fontWeight: '900', 
-                border: '4px solid black', 
-                cursor: 'pointer',
-                textTransform: 'uppercase'
-              }}
             >
               I Have Finished Reading
             </button>
           ) : (
-            <div style={{ border: '4px solid #00857a', padding: '30px', backgroundColor: '#e0fff4' }}>
-              <h3 style={{ fontSize: '2rem', fontWeight: '900', color: '#00857a', marginBottom: '15px', textTransform: 'uppercase' }}>
+            <div className="progress-box" >
+              <h3 className="progress-header">
                 Progress Saved!
               </h3>
-              <p style={{ fontSize: '1.2rem', marginBottom: '20px', fontWeight: 'bold' }}>
+              <p className="progress-text">
                 You have successfully completed this lesson.
               </p>
               <Link 
                 to="/dashboard" 
-                style={{ 
-                  backgroundColor: 'black', 
-                  color: '#26d9ca', 
-                  padding: '20px 40px', 
-                  fontSize: '1.5rem', 
-                  fontWeight: 'bold', 
-                  textDecoration: 'none', 
-                  border: '3px solid black', 
-                  display: 'inline-block' 
-                }}
+                className="dashboard-link-bottom"
               >
                 RETURN TO DASHBOARD
               </Link>
@@ -225,7 +175,6 @@ const Browser = () => {
           )}
         </div>
       </div>
-      <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );
 };
