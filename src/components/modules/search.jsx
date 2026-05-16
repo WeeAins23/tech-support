@@ -60,48 +60,43 @@ const Search = () => {
       <div className="container mx-auto px-10 py-12">
         
         {/* Header */}
-        <div style={{ borderBottom: '4px solid #26d9ca', marginBottom: '40px', paddingBottom: '20px' }}>
-          <h1 style={{ color: 'black', textTransform: 'uppercase', fontSize: '2.5rem', fontWeight: '900' }}>
+        <div className="module-header">
+          <h1 className="module-h1">
             How to Search
           </h1>
-          <Link to="/dashboard" style={{ color: '#26d9ca', fontWeight: 'bold', textDecoration: 'none' }}>
+          <Link to="/dashboard"
+          className="dashboard-link">
             ← Back to Dashboard
           </Link>
         </div>
 
         {/* Introduction */}
-        <div style={{ marginBottom: '50px' }}>
-          <p style={{ fontSize: '1.6rem', lineHeight: '1.5', color: 'black', fontWeight: '700' }}>
+        <div className="module-wrapper">
+          <p className="module-intro-text-head">
             Searching is how you find specific information on the internet without knowing the exact website address.
           </p>
-          <p style={{ fontSize: '1.3rem', lineHeight: '1.6', marginTop: '20px', color: '#333' }}>
+          <p className="module-intro-text-bosy">
             If the Internet is a giant library, a Search Engine (like Google) is the Librarian. You tell the Librarian what you are looking for, and they show you all the books that might have the answer.
           </p>
         </div>
 
         {/* Section 1: The Search Box */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             The Search Box
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             To start, you look for a large white box, usually in the middle of the page. This is where you type your "Keywords."
           </p>
           <div 
             onClick={toggleZoom}
-            style={{ 
-              padding: '10px', 
-              textAlign: 'center', 
-              backgroundColor: '#fdfdfd',
-              cursor: 'zoom-in'
-            }}
+            className="module-image"
           >
             <img 
               src="/img/google-home-page.png" 
               alt="An example image of the Google search engine homepage" 
-              style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '0 auto' }} 
             />
-            <p style={{ fontSize: '0.9rem', marginTop: '10px', color: '#666' }}>
+            <p className="image-text">
               (Tap image to see it bigger)
             </p>
           </div>
@@ -109,37 +104,14 @@ const Search = () => {
           {isZoomed && (
             <div 
               onClick={toggleZoom}
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100vw',
-                height: '100vh',
-                backgroundColor: 'rgba(0,0,0,0.9)',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                zIndex: 10000,
-                cursor: 'zoom-out'
-              }}
+              className="image-zoom"
             >
               <img 
                 src="/img/google-home-page.png" 
                 alt="Enlarged Google homepage view" 
-                style={{ maxWidth: '95%', maxHeight: '95%', border: '2px solid white' }} 
               />
               <button 
-                style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  backgroundColor: 'white',
-                  border: 'none',
-                  fontSize: '2rem',
-                  padding: '10px 20px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
+                className="close-button"
               >
                 ✕ CLOSE
               </button>
@@ -148,76 +120,56 @@ const Search = () => {
         </section>
 
         {/* Section 2: Keywords */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px', backgroundColor: '#f9fafb' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             Using Keywords
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             You don't need to type perfect sentences. Just type the most important words.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div style={{ border: '2px solid black', padding: '20px', backgroundColor: 'white' }}>
-              <p className="text-red-600 font-bold">Too Much Information:</p>
-              <p className="italic">"Where can I find a place that sells nice flowers near me today?"</p>
+            <div className="module-inner-section">
+              <p><b>Too Much Information:</b></p>
+              <p><i>"Where can I find a place that sells nice flowers near me today?"</i></p>
             </div>
-            <div style={{ border: '2px solid black', padding: '20px', backgroundColor: 'white' }}>
-              <p className="text-green-700 font-bold">Just Right (Keywords):</p>
-              <p className="font-black italic">"Florists in Glasgow"</p>
+            <div className="module-inner-section">
+              <p><b>Just Right (Keywords):</b></p>
+              <p>"<i>Florists in Glasgow"</i></p>
             </div>
           </div>
         </section>
 
         {/* Section 3: Choosing a Result */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             Picking a Result
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             After you press 'Enter', the browser shows a list of websites. Look for the Large Blue Text - this is the link that will take you to that website.
           </p>
-          <div style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center' }}>
-            <p className="text-sm italic text-gray-500 mt-2">Tip: Avoid results that say "Ad" or "Sponsored" at first.</p>
-          </div>
+          <p className="module-section-body"><b>Tip: Avoid results that say "Ad" or "Sponsored" at first.</b></p>
         </section>
 
-        {/* DYNAMIC COMPLETION AREA */}
-        <div style={{ textAlign: 'center', marginTop: '60px', padding: '40px', borderTop: '4px solid black' }}>
+        {/* Completion Area */}
+        <div className="finished-module">
           {!isSaved ? (
             <button 
               onClick={completeModule}
-              style={{ 
-                backgroundColor: '#26d9ca', 
-                color: 'black', 
-                padding: '25px 50px', 
-                fontSize: '1.8rem', 
-                fontWeight: '900', 
-                border: '4px solid black', 
-                cursor: 'pointer',
-                textTransform: 'uppercase'
-              }}
+              className="finished-module-button"
             >
               I Have Finished Reading
             </button>
           ) : (
-            <div style={{ border: '4px solid #00857a', padding: '30px', backgroundColor: '#e0fff4' }}>
-              <h3 style={{ fontSize: '2rem', fontWeight: '900', color: '#00857a', marginBottom: '15px', textTransform: 'uppercase' }}>
-                ✅ Search Module Complete!
+            <div className="progress-box">
+              <h3 className="progress-header">
+                Search Module Complete!
               </h3>
-              <p style={{ fontSize: '1.2rem', marginBottom: '20px', fontWeight: 'bold' }}>
+              <p className="progress-text">
                 Your progress has been recorded.
               </p>
               <Link 
                 to="/dashboard" 
-                style={{ 
-                  backgroundColor: 'black', 
-                  color: '#26d9ca', 
-                  padding: '20px 40px', 
-                  fontSize: '1.5rem', 
-                  fontWeight: 'bold', 
-                  textDecoration: 'none', 
-                  border: '3px solid black', 
-                  display: 'inline-block' 
-                }}
+                className="dashboard-link-end"
               >
                 RETURN TO DASHBOARD
               </Link>

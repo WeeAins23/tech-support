@@ -60,49 +60,43 @@ const Email = () => {
       <div className="container mx-auto px-10 py-12">
         
         {/* Header */}
-        <div style={{ borderBottom: '4px solid #26d9ca', marginBottom: '40px', paddingBottom: '20px' }}>
-          <h1 style={{ color: 'black', textTransform: 'uppercase', fontSize: '2.5rem', fontWeight: '900' }}>
+        <div className="module-header">
+          <h1 className="module-h1">
             Email 101
           </h1>
-          <Link to="/dashboard" style={{ color: '#26d9ca', fontWeight: 'bold', textDecoration: 'none', fontSize: '1.2rem' }}>
+          <Link to="/dashboard"
+          className="dashboard-link">
             ← Back to Dashboard
           </Link>
         </div>
 
         {/* Introduction */}
-        <div style={{ marginBottom: '50px' }}>
-          <p style={{ fontSize: '1.6rem', lineHeight: '1.5', color: 'black', fontWeight: '700' }}>
+        <div className="module-wrapper">
+          <p className="module-intro-text-head">
             Email is a way to send and receive digital letters over the internet.
           </p>
-          <p style={{ fontSize: '1.3rem', lineHeight: '1.6', marginTop: '20px', color: '#333' }}>
-            It is just like the traditional post office, but much faster. Instead of a physical mailbox on your house, you have an **Inbox** on your computer or phone where your messages arrive instantly.
+          <p className="module-intro-text-body">
+            It is just like the traditional post office, but much faster. Instead of a physical mailbox on your house, you have an Inbox on your computer or phone where your messages arrive instantly.
           </p>
         </div>
 
         {/* Section 1: Your Inbox */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             Your Inbox
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             The Inbox is where all your incoming mail is kept. Messages that you haven't read yet will usually appear in <b>bold text</b> to help them stand out.
           </p>
           <div 
             onClick={toggleZoom}
-            style={{ 
-              border: '2px dashed #ccc', 
-              padding: '10px', 
-              textAlign: 'center', 
-              backgroundColor: '#fdfdfd',
-              cursor: 'zoom-in'
-            }}
+            className="module-image"
           >
             <img 
               src="/img/email.jpg" 
               alt="An example image of a digital email inbox list" 
-              style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '0 auto' }} 
             />
-            <p style={{ fontSize: '0.9rem', marginTop: '10px', color: '#666' }}>
+            <p className="image-text">
               (Tap image to see it bigger)
             </p>
           </div>
@@ -110,37 +104,14 @@ const Email = () => {
           {isZoomed && (
             <div 
               onClick={toggleZoom}
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100vw',
-                height: '100vh',
-                backgroundColor: 'rgba(0,0,0,0.9)',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                zIndex: 10000,
-                cursor: 'zoom-out'
-              }}
+              className="image-zoom"
             >
               <img 
                 src="/img/email.jpg" 
-                alt="Enlarged inbox view" 
-                style={{ maxWidth: '95%', maxHeight: '95%', border: '2px solid white' }} 
+                alt="Enlarged inbox view"
               />
               <button 
-                style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  backgroundColor: 'white',
-                  border: 'none',
-                  fontSize: '2rem',
-                  padding: '10px 20px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
+                className="close-button"
               >
                 ✕ CLOSE
               </button>
@@ -149,74 +120,56 @@ const Email = () => {
         </section>
 
         {/* Section 2: Writing a Message */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px', backgroundColor: '#f9fafb' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             Writing a Message
           </h2>
-          <p style={{ fontSize: '1.75rem', marginBottom: '20px' }}>
+          <p className="module-section-body">
             When you want to send a message, there are three important boxes you need to fill in:
           </p>
           <div className="space-y-4">
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white', fontSize: '1.75rem' }}>
+            <div className="module-inner-section">
               <strong>To:</strong> Where you type the recipient's email address (like <i>friend@email.com</i>).
             </div>
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white', fontSize: '1.75rem' }}>
+            <div className="module-inner-section">
               <strong>Subject:</strong> A short title so the person knows what the email is about.
             </div>
-            <div style={{ border: '2px solid black', padding: '15px', backgroundColor: 'white', fontSize: '1.75rem' }}>
+            <div className="module-inner-section">
               <strong>Body:</strong> The main area where you type your letter.
             </div>
           </div>
         </section>
 
         {/* Section 3: Safety Advice */}
-        <section style={{ border: '3px solid black', padding: '30px', marginBottom: '40px' }}>
-          <h2 style={{ textTransform: 'uppercase', fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px' }}>
+        <section className="module-section">
+          <h2 className="module-section-header">
             A Note on Safety
           </h2>
-          <p style={{ fontSize: '1.75rem', lineHeight: '1.6' }}>
+          <p className="module-section-body">
             Just like the Junk Mail that comes through your door, you might get Spam/Junk emails. If you receive an email from someone you don't know, it is best <b>not to click</b> any links inside it.
           </p>
         </section>
 
-        {/* DYNAMIC COMPLETION AREA */}
-        <div style={{ textAlign: 'center', marginTop: '60px', padding: '40px', borderTop: '4px solid black' }}>
+        {/* Completion Area*/}
+        <div className="finished-module">
           {!isSaved ? (
             <button 
               onClick={completeModule}
-              style={{ 
-                backgroundColor: '#26d9ca', 
-                color: 'black', 
-                padding: '25px 50px', 
-                fontSize: '1.8rem', 
-                fontWeight: '900', 
-                border: '4px solid black', 
-                cursor: 'pointer',
-                textTransform: 'uppercase'
-              }}
+              className="finished-module-button"
             >
               I Have Finished Reading
             </button>
           ) : (
-            <div style={{ border: '4px solid #00857a', padding: '30px', backgroundColor: '#e0fff4' }}>
-              <h3 style={{ fontSize: '2rem', fontWeight: '900', color: '#00857a', marginBottom: '15px', textTransform: 'uppercase' }}>
-                ✅ Email Module Complete!
+            <div className="progress-box">
+              <h3 className="progress-header">
+                Email Module Complete!
               </h3>
-              <p style={{ fontSize: '1.2rem', marginBottom: '20px', fontWeight: 'bold' }}>
+              <p className="progress-text">
                 Your reading progress has been updated.
               </p>
               <Link 
                 to="/dashboard" 
-                style={{ 
-                  backgroundColor: 'black', 
-                  color: '#26d9ca', 
-                  padding: '20px 40px', 
-                  fontSize: '1.5rem', 
-                  fontWeight: 'bold', 
-                  textDecoration: 'none', 
-                  border: '3px solid black', 
-                  display: 'inline-block' 
-                }}
+                className="dashboard-link-end"
               >
                 RETURN TO DASHBOARD
               </Link>
@@ -224,7 +177,6 @@ const Email = () => {
           )}
         </div>
       </div>
-      <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );
 };

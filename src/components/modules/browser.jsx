@@ -59,8 +59,8 @@ const Browser = () => {
       <div className="container mx-auto px-10 py-12">
         
         {/* Header */}
-        <div className="browser-header">
-          <h1 className="browser-h1" >
+        <div className="module-header">
+          <h1 className="module-h1" >
             What is a Browser?
           </h1>
           <Link to="/dashboard" className="dashboard-link">
@@ -69,7 +69,7 @@ const Browser = () => {
         </div>
 
         {/* Introduction Section */}
-        <div className="browser-wrapper" >
+        <div className="module-wrapper" >
           <p className="module-intro-text-head">
             A Web Browser is a piece of software (an "app") that lets you visit websites. 
           </p>
@@ -149,6 +149,7 @@ const Browser = () => {
           )}
         </section>
 
+        {/* Completion Area */}
         <div className="finished-module">
           {!isSaved ? (
             <button 
@@ -167,7 +168,7 @@ const Browser = () => {
               </p>
               <Link 
                 to="/dashboard" 
-                className="dashboard-link-bottom"
+                className="dashboard-link-end"
               >
                 RETURN TO DASHBOARD
               </Link>

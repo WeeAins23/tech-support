@@ -149,7 +149,6 @@ const Dashboard = () => {
                       </div>
                     )}
 
-                    {/* CAN'T CHANGE  */}
                     <p style={{ 
                       marginTop: '15px', 
                       fontSize: '2rem', 

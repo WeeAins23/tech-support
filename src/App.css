@@ -14,7 +14,6 @@ html, body, #root {
 }
 
 @media screen and (max-width: 400px) {
-  #about,
   #faqs,
   #footer,
   #header,

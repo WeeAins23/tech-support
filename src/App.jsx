@@ -36,20 +36,6 @@ const App = () => {
     setLandingPageData(JsonData);
   }, []);
 
-// useEffect(() => {
-//       // Use backticks `` for the template literal so ${username} works!
-//       fetch(`http://localhost:5000/api/user/${username}`)
-//           .then(res => res.json())
-//           .then(data => {
-//               if (data && data.length > 0) {
-//                   const userProgress = JSON.parse(data[0].progress);
-//                   setProgress(userProgress);
-//               }
-//           })
-//           .catch(err => console.error('Database connection error:', err));
-//   }, [username]);
-
-
   return (
     <Router>
       <div className="App min-h-screen flex flex-col m-0 p-0">

@@ -107,34 +107,24 @@ const MousePractice = () => {
     <div id="mouse-practice" className="w-full min-h-screen bg-white font-sans">
       <div className="container mx-auto px-10 py-12 text-center">
         
-        {/* BACK TO DASHBOARD EXIT */}
-        <div style={{ textAlign: 'left', marginBottom: '20px' }}>
+        <div className="games-dashboard-link">
           <Link 
             to="/dashboard" 
-            style={{ 
-              color: 'black', 
-              textDecoration: 'none', 
-              fontWeight: 'bold', 
-              fontSize: '1.2rem',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              borderBottom: '2px solid #26d9ca'
-            }}
+            className="dashboard-link"
           >
             ← BACK TO DASHBOARD
           </Link>
         </div>
 
-        <h1 style={{ color: 'black', textTransform: 'uppercase', fontSize: '2.5rem', fontWeight: '900', marginBottom: '10px' }}>
+        <h1 className="games-header">
           Mouse Practice
         </h1>
 
         {gameState === "start" && (
-          <div style={{ border: '4px solid black', padding: '40px', backgroundColor: '#f9fafb' }}>
-            <h2 className="text-3xl font-black mb-4 uppercase">The 60-Second Challenge</h2>
-            <p className="text-xl mb-8">Click the teal box <b>20 times</b> before the clock runs out.</p>
-            <button onClick={startGame} style={{ backgroundColor: '#26d9ca', color: 'black', padding: '20px 50px', fontSize: '1.5rem', fontWeight: '900', border: '4px solid black', cursor: 'pointer' }}>
+          <div className="games-section">
+            <h2 className="game-intro-header">The 60-Second Challenge</h2>
+            <p className="game-intro-text">Click the teal box <b>20 times</b> before the clock runs out.</p>
+            <button onClick={startGame} className="start-button">
               START GAME
             </button>
           </div>
@@ -146,20 +136,13 @@ const MousePractice = () => {
               <p className="text-2xl font-bold">Time: <span style={{ color: timeLeft <= 10 ? 'red' : 'black' }}>{timeLeft}s</span></p>
               <p className="text-2xl font-bold">Clicks: {score}/20</p>
             </div>
-            <div style={{ border: '4px solid black', height: '500px', position: 'relative', backgroundColor: '#f9fafb', overflow: 'hidden' }}>
+            <div className="mouse-play-area">
               <button
                 onClick={handleTargetClick}
+                className="mouse-click-button"
                 style={{
-                  position: 'absolute',
                   top: position.top,
                   left: position.left,
-                  width: '120px',
-                  height: '120px',
-                  backgroundColor: '#26d9ca',
-                  border: '4px solid black',
-                  cursor: 'pointer',
-                  transform: 'translate(-50%, -50%)',
-                  fontWeight: '900'
                 }}
               >
                 CLICK!
@@ -169,26 +152,36 @@ const MousePractice = () => {
         )}
 
         {gameState === "win" && (
-          <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#e0fff4' }}>
+          <div className="finished-game-screen">
             <h2 className="text-4xl font-black mb-6 uppercase">Success!</h2>
             <p className="text-2xl mb-10">You completed the challenge in {60 - timeLeft} seconds!</p>
-            <Link to="/dashboard" style={{ backgroundColor: 'black', color: '#26d9ca', padding: '20px 40px', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'none', border: '3px solid black', display: 'inline-block' }}>
+            <Link to="/dashboard" className="dashboard-link-end">
               RETURN TO DASHBOARD
             </Link>
           </div>
         )}
 
         {gameState === "lose" && (
-          <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#fff0f0' }}>
+          <div className="lose-game-screen">
             <h2 className="text-4xl font-black mb-6 uppercase">Time's Up!</h2>
-            <p className="text-2xl mb-10">You got {score} clicks. Would you like to try again?</p>
-            <button onClick={startGame} style={{ backgroundColor: 'black', color: '#26d9ca', padding: '20px 40px', fontSize: '1.5rem', fontWeight: 'bold', border: '3px solid black', cursor: 'pointer' }}>
-              RETRY
-            </button>
-          </div>
-        )}
+            <p className="text-2xl mb-10">You got {score} click. Would you like to try again?</p>
+              <div className="new-game">
+                <button 
+                  onClick={startGame} 
+                  className="try-again-button"
+                >
+                  TRY AGAIN
+                </button>
+                <Link 
+                  to="/dashboard" 
+                  className="dashboard-link-end"
+                  >
+                    RETURN TO DASHBOARD
+                  </Link>
+              </div>
+            </div>
+          )}
       </div>
-      <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );
 };

@@ -21,16 +21,16 @@ h2 {
   margin: 0 0 20px;
   font-weight: 800;
   font-size: 36px;
-  color: #333;
+  color: black;
 }
 h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: #black;
 }
 h4 {
   font-size: 18px;
-  color: #333;
+  color: black;
   font-weight: 600;
 }
 h5 {
@@ -177,7 +177,7 @@ hr {
   font-family: "Raleway", sans-serif;
   font-size: 24px;
   font-weight: 700;
-  color: #333;
+  color: black;
   text-transform: uppercase;
 }
 #menu.navbar-default .navbar-nav > li > a {
@@ -776,6 +776,19 @@ footer{
   margin: 0;
 }
 
+/* Register page */
+.success-message{
+  background-color: #e0fff4;
+  color: #00857a;
+  padding: 15px;
+  border: 2px solid #00857a;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
 /* PASSWORD FIELDS */
 .show-password{
   font-size: 1.5rem;
@@ -800,15 +813,15 @@ footer{
   text-align: center;
 }
 
-/* BROWSER MODULE */
+/* READING MODULES */
 
-.browser-header{
+.module-header{
   border-bottom: 4px solid #26d9ca;
   margin-bottom: 40px;
   padding-bottom: 20px;
 }
 
-.browser-h1{
+.module-h1{
   color: black;
   text-transform: uppercase;
   font-size: 2.5rem;
@@ -816,12 +829,14 @@ footer{
 }
 
 .dashboard-link{
-  color: #26d9ca;
+  border-bottom: solid 2px #26d9ca;
+  color: black;
   font-weight: bold;
   text-decoration: none;
+  font-size: 2rem;
 }
 
-.browser-wrapper{
+.module-wrapper{
   margin-bottom: 50px;
 }
 
@@ -836,7 +851,7 @@ footer{
   font-size: 1.3rem;
   line-height: 1.6;
   margin-top: 20px;
-  color: #333;
+  color: black;
 }
 
 .module-section{
@@ -953,7 +968,7 @@ footer{
   font-weight: bold;
 }
 
-.dashboard-link-bottom{
+.dashboard-link-end{
   background-color: black; 
   color: #26d9ca;
   padding: 20px 40px;
@@ -962,4 +977,141 @@ footer{
   text-decoration: none;
   border: 3px solid black;
   display: inline-block; 
+}
+
+/* GAMES MODULES */
+
+.games-dashboard-link{
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.games-header{
+  color: black;
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.games-section{
+  border: 4px solid black;
+  padding: 40px;
+  margin-bottom: 20px;
+}
+
+.game-intro-header{
+  font-size: 3rem;
+}
+
+.game-intro-text{
+  color: black;
+  font-size: 2.5rem;
+}
+
+.start-button{
+  background-color: #26d9ca;
+  color: black;
+  padding: 20px 50px;
+  font-size: 2rem;
+  font-weight: 900;
+  border: 4px solid black;
+  cursor: pointer;
+}
+
+.playing-info{
+  border: 4px solid black;
+  padding: 60px;
+  background-color: #f9fafb;
+  margin-bottom: 20px;
+}
+
+.keyboard-tile{
+  font-size: 8rem; 
+  font-weight: 900; 
+  color: black;
+  background-color: white;
+  display: inline-block;
+  padding: 20px 60px;
+  border: 5px solid #26d9ca;
+  border-radius: 15px;
+}
+
+.finished-game-screen{
+  border: 4px solid black;
+  padding: 50px;
+  background-color: #e0fff4;
+  margin-bottom: 20px;
+}
+
+.lose-game-screen{
+  border: 4px solid black;
+  padding: 50px;
+  background-color:#fff0f0;
+  margin-bottom: 20px;
+}
+
+.new-game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.try-again-button{
+  background-color: white;
+  color: black;
+  padding: 20px 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 3px solid black;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+}
+
+.mouse-play-area{
+  border: 4px solid black;
+  height: 500px;
+  position: relative;
+  background-color: #f9fafb;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.mouse-click-button{
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-color: #26d9ca;
+  border: 4px solid black;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  font-weight: 900;
+  color: black;
+  font-size: 2rem;
+}
+
+/* Footer information links */
+
+.info-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary{
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 12px 16px;
+  font-weight: 500;
+  color: black;
+  list-style: none;
 }

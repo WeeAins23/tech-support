@@ -115,41 +115,32 @@ const KeyboardBasics = () => {
 
   return (
     <div id="keyboard-module" className="w-full min-h-screen bg-white font-sans">
-      <div className="container mx-auto px-10 py-12 text-center">
+      <div className="container mx-auto px-10 py-12 text-center" mb-20>
         
-        {/* EMERGENCY EXIT: Back to Dashboard */}
-        <div style={{ textAlign: 'left', marginBottom: '20px' }}>
+        {/* Back to Dashboard */}
+        <div className="games-dashboard-link">
           <Link 
-            to="/dashboard" 
-            style={{ 
-              color: 'black', 
-              textDecoration: 'none', 
-              fontWeight: 'bold', 
-              fontSize: '1.2rem',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              borderBottom: '2px solid #26d9ca'
-            }}
+            to="/dashboard"
+            className="dashboard-link"
           >
             ← BACK TO DASHBOARD
           </Link>
         </div>
 
-        <h1 style={{ color: 'black', textTransform: 'uppercase', fontSize: '2.5rem', fontWeight: '900', marginBottom: '10px' }}>
+        <h1 className="games-header">
           Keyboard Basics
         </h1>
 
         {gameState === "start" && (
-          <div style={{ border: '4px solid black', padding: '40px', backgroundColor: '#f9fafb' }}>
-            <h2 className="text-3xl font-black mb-4 uppercase">The Unique Key Challenge</h2>
-            <p className="text-xl mb-8">
+          <div className="games-section">
+            <h2 className="game-intro-header">The Unique Key Challenge</h2>
+            <p className="game-intro-text">
               Find <b>20 different keys</b> on your keyboard.<br/>
               No two keys will be the same in one round!
             </p>
             <button 
               onClick={startNewGame}
-              style={{ backgroundColor: '#26d9ca', color: 'black', padding: '20px 50px', fontSize: '1.5rem', fontWeight: '900', border: '4px solid black', cursor: 'pointer' }}
+              className="start-button"
             >
               START TYPING
             </button>
@@ -163,20 +154,9 @@ const KeyboardBasics = () => {
               <p className="text-2xl font-bold">Progress: {score}/20</p>
             </div>
             
-            <div style={{ border: '4px solid black', padding: '60px', backgroundColor: '#f9fafb' }}>
+            <div className="playing-info">
               <p className="text-xl mb-4 uppercase font-bold text-gray-600">Press this key:</p>
-              <div 
-                style={{ 
-                  fontSize: '8rem', 
-                  fontWeight: '900', 
-                  color: 'black', 
-                  backgroundColor: 'white', 
-                  display: 'inline-block', 
-                  padding: '20px 60px', 
-                  border: '5px solid #26d9ca',
-                  borderRadius: '15px'
-                }}
-              >
+              <div className="keyboard-tile">
                 {keyDeck[score]}
               </div>
             </div>
@@ -184,29 +164,29 @@ const KeyboardBasics = () => {
         )}
 
         {gameState === "win" && (
-          <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#e0fff4' }}>
+          <div className="finished-game-screen">
             <h2 className="text-4xl font-black mb-6 uppercase">Well Done!</h2>
             <p className="text-2xl mb-10">You finished in <b>{60 - timeLeft} seconds!</b></p>
-            <Link to="/dashboard" style={{ backgroundColor: 'black', color: '#26d9ca', padding: '20px 40px', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'none', border: '3px solid black', display: 'inline-block' }}>
+            <Link to="/dashboard" className="dashboard-link-end">
               RETURN TO DASHBOARD
             </Link>
           </div>
         )}
 
         {gameState === "lose" && (
-          <div style={{ border: '4px solid black', padding: '50px', backgroundColor: '#fff0f0' }}>
+          <div className="lose-game-screen">
             <h2 className="text-4xl font-black mb-6 uppercase">Time's Up!</h2>
             <p className="text-2xl mb-10">You found {score} keys. Want to try a new set of 20?</p>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+            <div className="new-game">
               <button 
                 onClick={startNewGame} 
-                style={{ backgroundColor: 'black', color: '#26d9ca', padding: '20px 40px', fontSize: '1.5rem', fontWeight: 'bold', border: '3px solid black', cursor: 'pointer', width: '100%', maxWidth: '400px' }}
+                className="try-again-button"
               >
                 TRY AGAIN
               </button>
               <Link 
                 to="/dashboard" 
-                style={{ backgroundColor: 'white', color: 'black', padding: '15px 40px', fontSize: '1.2rem', fontWeight: 'bold', textDecoration: 'none', border: '3px solid black', display: 'block', width: '100%', maxWidth: '400px', textAlign: 'center' }}
+                className="dashboard-link-end"
               >
                 RETURN TO DASHBOARD
               </Link>
@@ -214,7 +194,6 @@ const KeyboardBasics = () => {
           </div>
         )}
       </div>
-      <div style={{ height: '100px', width: '100%' }}></div>
     </div>
   );
 };
