@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -66,6 +66,12 @@ export const Login = () => {
           <button type="submit" className="login-submit-btn">
             Login
           </button>
+
+          <div className="forgot-password">
+            <Link className="forgot-password-link" to="/forgot-password">
+            Forgot your password? Click here for help.
+            </Link>
+          </div>
         </form>
       </div>
     </div>

@@ -88,7 +88,7 @@ hr {
     padding-left: 15px;
     padding-right: 15px;
     margin: 0 auto;
-    overflow: hidden; /* Clips any stray pixels */
+    overflow: hidden;
 }
 
 .navbar-header {
@@ -456,6 +456,16 @@ header .hero-image {
   transform: scale(0.96); /* Subtle "push" effect when Harold clicks */
 }
 
+.forgot-password{
+  margin-top: 20px;
+  text-align:center;
+}
+
+.forgot-password-link{
+  color: black;
+  font-weight: bold;
+}
+
 /* Register Button only */
 
 .register-submit-btn {
@@ -766,6 +776,16 @@ footer{
 .footer-nav-link{
   color: black;
   text-decoration: none;
+}
+
+.footer-nav-link:hover{
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+
+.footer-nav-link:active{
+  color: black;
 }
 
 .footer-socials{
@@ -1112,6 +1132,11 @@ footer{
   gap: 8px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 50px;
+}
+
+.info-wrapper h1{
+  font-size: 5rem;
 }
 
 .summary{
@@ -1121,9 +1146,24 @@ footer{
   justify-content: space-between;
   gap: 16px;
   border-radius: 8px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 12px 16px;
   font-weight: 500;
   color: black;
   list-style: none;
+}
+
+.summary span{
+  font-size: 2rem;
+}
+
+.answer-container{
+  padding: 16px;
+  background: linear-gradient(180deg, #f3f4f6 0%, #26d9ca 100%);
+  border-radius: 0 0 25px 25px;
+}
+
+.answer{
+  color: black;
+  font-size: 2rem;
 }

@@ -107,4 +107,40 @@ app.post('/api/update-progress', (req, res) => {
   });
 });
 
+// Check if username exists
+app.get('/api/check-user/:username', (req, res) => {
+  const username = req.params.username;
+  const sql = "SELECT * FROM users WHERE username = ?";
+  
+  db.query(sql, [username], (err, result) => {
+    console.log("Checking for user:", username, "Found:", result.length);
+    if (err)
+      return res.status(500).send(err);
+    if (result.length > 0) {
+      res.status(200).json({ exists: true });
+    } else {
+      res.status(404).json({ exists: false });
+    }
+  });
+});
+
+// Reset password
+app.post('/api/reset-password', async (req, res) => {
+  const { username, newPassword } = req.body;
+
+  try {
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    
+    const sql = "UPDATE users SET password = ? WHERE username = ?";
+
+    db.query(sql, [hashedNewPassword, username], (err, result) => {
+      if (err) return res.status(500).send(err);
+      res.status(200).send({ message: "Password updated successfully" });
+    });
+  } catch (error) {
+    res.status(500).send("Error hashing new password");
+  }
+});
+
 app.listen(5000, () => console.log("Server running on port 5000"));

@@ -6,6 +6,7 @@ import { Footer } from "./components/footer";
 // Importing page components (Login, Register, FAQs, Privacy Policy, Terms of Use, Dashboard, Modules)
 import { Login } from "./components/login";
 import { Register } from "./components/register";
+import { ForgotPassword } from "./components/forgot-password"
 import { FAQ } from "./components/faqs";
 import { PrivacyPolicy } from "./components/privacy";
 import { Terms } from "./components/terms";
@@ -21,6 +22,7 @@ import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 // Importing Routing Tools 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToView from "./components/ScrollToView";
 import "./App.css";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
@@ -40,9 +42,9 @@ const App = () => {
     <Router>
       <div className="App min-h-screen flex flex-col m-0 p-0">
         
-        {/* Navigation always stays at the top of every page */}
+        <ScrollToView />
         <Navigation />
-        <main className="content-wrapper flex-grow mb-20">
+        <main id="main-content" className="content-wrapper flex-grow mb-20">
           <Routes>
             {/* path="/": The Homepage. We pass the Header its specific data here */}
             <Route 
@@ -52,6 +54,7 @@ const App = () => {
             {/* Path Mapping: Tells the browser which component to show for each URL */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword/>} />
             <Route path="/faqs" element={<FAQ />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
