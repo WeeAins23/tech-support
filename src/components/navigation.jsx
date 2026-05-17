@@ -23,7 +23,7 @@ export const Navigation = (props) => {
         
         {/* Logo Area */}
         <div className='nav-logo-wrapper'>
-          <Link to="/">
+          <Link to="/dashboard">
             <img src="/img/ts-logo.png" alt="Logo" className="nav-logo" />
           </Link>
         </div>

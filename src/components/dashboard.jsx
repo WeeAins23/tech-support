@@ -92,8 +92,8 @@ const Dashboard = () => {
   ];
 
   return (
-    <div id="dashboard" className="w-full min-h-screen bg-white font-sans">
-      <div className="container mx-auto px-10 py-12 pb-20">
+    <div id="dashboard" className="w-full h-screen bg-white font-sans overflow-hidden">
+      <div className="container mx-auto px-10 h-full flex flex-col justify-center py-4">
         <h1>
           Welcome, {displayName}!
         </h1>
@@ -114,9 +114,9 @@ const Dashboard = () => {
                     opacity: isAvailable ? 1 : 0.7
                   }}
                 >
-                  <h2>
+                  <h3>
                     {mod.title}
-                  </h2>
+                  </h3>
 
                   <div className="w-full text-center">
                     {/* Best time or last read displayed */}
@@ -151,7 +151,7 @@ const Dashboard = () => {
 
                     <p style={{ 
                       marginTop: '15px', 
-                      fontSize: '2rem', 
+                      fontSize: '1.25rem', 
                       fontWeight: 'bold', 
                       textTransform: 'uppercase',
                       color: mod.isComplete ? '#00857a' : '#d00000'
