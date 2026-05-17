@@ -1,45 +1,61 @@
 import React from "react";
 
 const Terms = () => {
+  // Terms Of Use data
+  const termsData = [
+  {
+    id: 1,
+    title: "1. A Safe Place to Learn",
+    content: "This website is a dedicated learning tool. Everything you see here is designed to teach you about technology in a protected environment. You will never be redirected to outside websites or asked for payment."
+  },
+  {
+    id: 2,
+    title: "2. Your Progress is Private",
+    content: "We only save information about which lessons you have read so you can pick up where you left off. This data is linked only to your username and is never shared with third parties or advertisers."
+  },
+  {
+    id: 3,
+    title: "3. Educational Accuracy",
+    content: "Our lessons are designed to be simple and easy to follow. While we strive for accuracy, technology changes fast! These guides are intended as a helpful starting point for your digital journey."
+  }
+];
+
   return (
-    <div id="terms" className="w-full min-h-screen bg-white font-sans">
-      <div className="container mx-auto px-10 py-12">
-        
-        <h1 
-        style={{ color: 'black', textTransform: 'uppercase', paddingBottom: '12px', fontSize: '5.5rem', fontWeight: '900' }}
-        className="!text-black text-5xl font-extrabold mb-10 border-b-4 border-[#26d9ca] pb-4 !uppercase">
-          Terms Of Use
-        </h1>
+    <div id="terms" className="info-wrapper">
+      <h1>Terms of Use</h1>
+      
+      {termsData.map((item, index) => (
+        <React.Fragment key={item.id}>
+          <details style={{ border: 'none' }}>
+            <summary className="summary">
+              <span>{item.title}</span>
+              <svg 
+                style={{ width: '20px', height: '20px', flexShrink: 0 }} 
+                xmlns="http://www.w3.org/2000/svg" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
 
-        <div className="space-y-8 text-black">
-          <section>
-            <h2 className="text-3xl font-bold mb-4 uppercase">1. Our Agreement</h2>
-            <p className="text-xl leading-relaxed">
-              By using this website, you agree to use it for learning and practice. This is a friendly community designed to help you feel more confident with technology.
-            </p>
-          </section>
+            <div className="answer-container">
+              <p className="answer">{item.content}</p>
+            </div>
+          </details>
 
-          <section>
-            <h2 className="text-3xl font-bold mb-4 uppercase">2. Safe Learning</h2>
-            <p className="text-xl leading-relaxed">
-              This site is a simulation. The actions you take here stay here. You aren't sending "real" emails to the outside world, so you can practice without worry.
-            </p>
-          </section>
+          {/* Consistent divider line */}
+          {index < termsData.length - 1 && <hr className="info-divider" />}
+        </React.Fragment>
+      ))}
 
-          <section>
-            <h2 className="text-3xl font-bold mb-4 uppercase">3. Your Responsibility</h2>
-            <p className="text-xl leading-relaxed">
-              We ask that you treat the website and other learners with respect. Please do not attempt to use this site for any purpose other than learning support.
-            </p>
-          </section>
-
-          <section className="bg-gray-100 p-6 rounded-lg border-l-8 border-[#26d9ca]">
-            <h2 className="text-2xl font-bold mb-2">Friendly Reminder</h2>
-            <p className="text-lg">
-              You are doing a great job learning something new. These terms are just here to make sure this stays a safe place for everyone!
-            </p>
-          </section>
-        </div>
+      {/* Friendly Reminder box at the bottom */}
+      <div className="reassurance-box">
+        <h2>Friendly Reminder</h2>
+        <p>
+          You are doing a great job learning something new. These terms are just here to make sure this stays a safe place for everyone!
+        </p>
       </div>
     </div>
   );
